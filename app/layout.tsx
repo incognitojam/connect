@@ -1,6 +1,5 @@
 'use client';
 
-import './globals.css';
 import { darkTheme, inter } from './theme';
 
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,10 +16,10 @@ export default function RootLayout({ children }: {
       */}
       <head />
       <body>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        {children}
-      </ThemeProvider>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
