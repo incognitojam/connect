@@ -7,9 +7,11 @@ import AppBar from '@mui/material/AppBar';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Container from '@mui/material/Container';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Map from '@mui/icons-material/Map';
 import Route from '@mui/icons-material/Route';
 import VideoLibrary from '@mui/icons-material/VideoLibrary';
@@ -18,7 +20,12 @@ import Settings from '@mui/icons-material/Settings';
 export default function DashboardLayout({ children }: {
   children: React.ReactNode;
 }) {
-  const [value, setValue] = useState(0);
+  const dongles = [
+    { label: 'Corolla', value: '0' },
+  ];
+
+  const [page, setPage] = useState(0);
+  const [selectedDongleId, setDongleId] = useState(dongles[0].value);
 
   const routes = [
     { label: 'Navigation', icon: <Map />, value: 'navigation' },
@@ -27,13 +34,30 @@ export default function DashboardLayout({ children }: {
     { label: 'Settings', icon: <Settings />, value: 'settings' },
   ];
 
+  const handleDongleIdChange = (event: SelectChangeEvent) => {
+    setDongleId(event.target.value as string);
+  };
+
   return (
     <>
       <AppBar position="static">
-        <Toolbar color="primary">
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            comma connect
-          </Typography>
+        <Toolbar>
+          <FormControl size="small">
+            <Select
+              id="dongle-select"
+              value={selectedDongleId}
+              onChange={handleDongleIdChange}
+            >
+              {dongles.map((dongle, index) => (
+                <MenuItem
+                  key={index}
+                  value={dongle.value}
+                >
+                  {dongle.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </Toolbar>
       </AppBar>
 
@@ -44,9 +68,9 @@ export default function DashboardLayout({ children }: {
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
         <BottomNavigation
           showLabels
-          value={value}
+          value={page}
           onChange={(event, newValue) => {
-            setValue(newValue);
+            setPage(newValue);
           }}
         >
           {routes.map((route, index) => (
