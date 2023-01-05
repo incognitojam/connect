@@ -5,7 +5,7 @@ import Map, { GeolocateControl, Marker } from 'react-map-gl';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiY29tbWFhaSIsImEiOiJjangyYXV0c20wMGU2NDluMWR4amUydGl5In0.6Vb11S6tdX6Arpj6trRE_g';
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiY29tbWFhaSIsImEiOiJjbGNpcHB1Nmw3Zjg3M3BwbjV2N2YxMjl5In0.73alGM0ovKLemvTo779Kag';
 const MAP_STYLE = 'mapbox://styles/commaai/clcgvbi4f000q15t6o2s8gys3';
 
 export default function Nav() {
