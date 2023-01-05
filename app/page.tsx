@@ -1,57 +1,52 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+
+import { useState } from 'react';
+
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import Map from '@mui/icons-material/Map';
+import Route from '@mui/icons-material/Route';
+import VideoLibrary from '@mui/icons-material/VideoLibrary';
+import Settings from '@mui/icons-material/Settings';
 
 export default function Home() {
+  const [value, setValue] = useState(0);
+
+  const routes = [
+    { label: 'Nav', icon: <Map /> },
+    { label: 'Drives', icon: <Route /> },
+    { label: 'Clips', icon: <VideoLibrary /> },
+    { label: 'Settings', icon: <Settings /> },
+  ];
+
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js 13!</a>
-        </h1>
+    <>
+      <Container>
+        <h1>lorem ipsum</h1>
+        <Stack direction="row" columnGap={1}>
+          <Button variant="text">Text</Button>
+          <Button variant="outlined">Outlined</Button>
+          <Button variant="contained">Contained</Button>
+        </Stack>
+      </Container>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://beta.nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js 13</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Explore the Next.js 13 playground.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates/next.js/app-directory?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>Deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <BottomNavigation
+          showLabels
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
-  )
+          {routes.map((route, index) => (
+            <BottomNavigationAction key={index} label={route.label} icon={route.icon} />
+          ))}
+        </BottomNavigation>
+      </Paper>
+    </>
+  );
 }
