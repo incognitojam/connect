@@ -15,6 +15,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Map from '@mui/icons-material/Map';
 import Route from '@mui/icons-material/Route';
 import VideoLibrary from '@mui/icons-material/VideoLibrary';
+import Insights from '@mui/icons-material/Insights';
 import Settings from '@mui/icons-material/Settings';
 
 export default function DashboardLayout({ children }: {
@@ -22,15 +23,17 @@ export default function DashboardLayout({ children }: {
 }) {
   const dongles = [
     { label: 'Corolla', value: '0' },
+    { label: 'Sonata', value: '1' },
   ];
 
   const [page, setPage] = useState(0);
   const [selectedDongleId, setDongleId] = useState(dongles[0].value);
 
   const routes = [
-    { label: 'Navigation', icon: <Map />, value: 'navigation' },
+    { label: 'Map', icon: <Map />, value: 'navigation' },
     { label: 'Drives', icon: <Route />, value: 'drives' },
     { label: 'Clips', icon: <VideoLibrary />, value: 'clips' },
+    { label: 'Stats', icon: <Insights />, value: 'stats' },
     { label: 'Settings', icon: <Settings />, value: 'settings' },
   ];
 
