@@ -4,10 +4,9 @@ import { useState } from 'react';
 import Map, { GeolocateControl, Marker } from 'react-map-gl';
 
 import Autocomplete from '@mui/material/Autocomplete';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -21,6 +20,7 @@ import Star from '@mui/icons-material/Star';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import LocalParking from '@mui/icons-material/LocalParking';
 import Garage from '@mui/icons-material/Garage';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {CommaLogo} from "../../../components/icons";
@@ -99,10 +99,13 @@ function AppBar() {
         clearOnBlur
         handleHomeEndKeys
         options={['Corolla', 'Civic', 'Camry']}
-        sx={{ flex: 1, marginRight: 2 }}
+        sx={{ flex: 1 }}
         freeSolo
         renderInput={(params) => <TextField {...params} hiddenLabel placeholder="where do you want to go?" variant="standard" fullWidth />}
       />
+      <IconButton size="large">
+        <AccountCircle fontSize="inherit" />
+      </IconButton>
     </Paper>
   );
 }
