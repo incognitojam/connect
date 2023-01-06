@@ -6,7 +6,6 @@ import Map, { GeolocateControl, Marker } from 'react-map-gl';
 import Autocomplete from '@mui/material/Autocomplete';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -20,14 +19,26 @@ import Star from '@mui/icons-material/Star';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import LocalParking from '@mui/icons-material/LocalParking';
 import Garage from '@mui/icons-material/Garage';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import {CommaLogo} from "../../../components/icons";
 
 // https://visgl.github.io/react-map-gl/docs/get-started/tips-and-tricks
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiY29tbWFhaSIsImEiOiJjbGNpcHB1Nmw3Zjg3M3BwbjV2N2YxMjl5In0.73alGM0ovKLemvTo779Kag';
 const MAP_STYLE = 'mapbox://styles/commaai/clcgvbi4f000q15t6o2s8gys3';
+
+function SearchBar() {
+  return (
+    <Autocomplete
+      selectOnFocus
+      clearOnBlur
+      handleHomeEndKeys
+      options={['Corolla', 'Civic', 'Camry']}
+      sx={{ position: 'absolute', bottom: 72, left: 16, right: 16, zIndex: 1 }}
+      freeSolo
+      renderInput={(params) => <TextField {...params} hiddenLabel placeholder="where do you want to go?" variant="standard" size="small" fullWidth />}
+    />
+  );
+}
 
 function DeviceCard() {
   const handleClick = () => {
@@ -89,27 +100,6 @@ function DeviceCard() {
   );
 }
 
-function AppBar() {
-  // Rounded element with SvgIcon logo, autocomplete search bar and avatar icon
-  return (
-    <Paper square sx={{ position: 'fixed', top: 0, left: 0, right: 0, height: 56, display: 'flex', alignItems: 'center' }}>
-      <CommaLogo sx={{ width: 56 }} />
-      <Autocomplete
-        selectOnFocus
-        clearOnBlur
-        handleHomeEndKeys
-        options={['Corolla', 'Civic', 'Camry']}
-        sx={{ flex: 1 }}
-        freeSolo
-        renderInput={(params) => <TextField {...params} hiddenLabel placeholder="where do you want to go?" variant="standard" fullWidth />}
-      />
-      <IconButton size="large">
-        <AccountCircle fontSize="inherit" />
-      </IconButton>
-    </Paper>
-  );
-}
-
 export default function Navigation() {
   const [viewState, setViewState] = useState({
     latitude: 37.8,
@@ -134,8 +124,8 @@ export default function Navigation() {
         <Marker longitude={-122.4} latitude={37.8} color="red" />
         <GeolocateControl />
       </Map>
-      <AppBar />
-      <DeviceCard />
+      {/*<DeviceCard />*/}
+      <SearchBar />
     </div>
   );
 }
