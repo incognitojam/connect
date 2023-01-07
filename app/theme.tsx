@@ -24,7 +24,7 @@ export const lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#51ff00',
+      main: '#2287ce',
     },
   },
   typography: {

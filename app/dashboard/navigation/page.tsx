@@ -6,11 +6,14 @@ import Map, { GeolocateControl, Marker } from 'react-map-gl';
 import Autocomplete from '@mui/material/Autocomplete';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import GpsFixed from '@mui/icons-material/GpsFixed';
@@ -19,23 +22,49 @@ import Star from '@mui/icons-material/Star';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import LocalParking from '@mui/icons-material/LocalParking';
 import Garage from '@mui/icons-material/Garage';
+import Search from '@mui/icons-material/Search';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
+import './styles.css';
 
 // https://visgl.github.io/react-map-gl/docs/get-started/tips-and-tricks
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiY29tbWFhaSIsImEiOiJjbGNpcHB1Nmw3Zjg3M3BwbjV2N2YxMjl5In0.73alGM0ovKLemvTo779Kag';
-const MAP_STYLE = 'mapbox://styles/commaai/clcgvbi4f000q15t6o2s8gys3';
+const MAP_STYLE_DAY = 'mapbox://styles/commaai/clcl7mnu2000214s2zgcdly6e';
+const MAP_STYLE_NIGHT = 'mapbox://styles/commaai/clcgvbi4f000q15t6o2s8gys3';
 
 function SearchBar() {
+  const theme = useTheme();
+  const options: string[] = [];
+
   return (
     <Autocomplete
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
-      options={['Corolla', 'Civic', 'Camry']}
+      options={options}
       sx={{ position: 'absolute', bottom: 72, left: 16, right: 16, zIndex: 1 }}
       freeSolo
-      renderInput={(params) => <TextField {...params} hiddenLabel placeholder="where do you want to go?" variant="standard" size="small" fullWidth />}
+      renderInput={(params) => (
+        <Paper
+          component="form"
+          sx={{
+            p: '2px 4px',
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+            borderRadius: 4,
+          }}
+        >
+          <InputBase
+            {...params}
+            placeholder="where do you want to go?"
+            sx={{ p: '0 8px' }}
+          />
+          <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+            <Search />
+          </IconButton>
+        </Paper>
+      )}
     />
   );
 }
@@ -102,27 +131,35 @@ function DeviceCard() {
 
 export default function Navigation() {
   const [viewState, setViewState] = useState({
-    latitude: 37.8,
-    longitude: -122.4,
-    zoom: 14
+    latitude: 32.7206,
+    longitude: -117.1666,
+    zoom: 14,
   });
+
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  const mapStyle = isDark ? MAP_STYLE_NIGHT : MAP_STYLE_DAY;
 
   return (
     <div>
       <Map
         {...viewState}
         onMove={evt => setViewState(evt.viewState)}
-        initialViewState={{
-          latitude: 37.8,
-          longitude: -122.4,
-          zoom: 14
-        }}
-        style={{ position: 'fixed', left: 0, right: 0, top: 56, bottom: 56 }}
-        mapStyle={MAP_STYLE}
+        style={{ position: 'fixed', top: 0, bottom: 56, height: 'auto' }}
+        mapStyle={mapStyle}
         mapboxAccessToken={MAPBOX_TOKEN}
       >
-        <Marker longitude={-122.4} latitude={37.8} color="red" />
-        <GeolocateControl />
+        {/* placeholder */}
+        <Marker
+          color="red"
+          longitude={-117.1666}
+          latitude={32.7206}
+        />
+
+        <GeolocateControl
+          position="bottom-right"
+          style={{ marginBottom: '88px', marginRight: '16px' }}
+        />
       </Map>
       {/*<DeviceCard />*/}
       <SearchBar />
