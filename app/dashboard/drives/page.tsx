@@ -17,6 +17,7 @@ import map from './map_timeline.png';
 
 const routes = [
   {
+    id: 0,
     time: '6:13-8:14',
     location: 'San Diego, California',
     distance: '12 mi',
@@ -24,6 +25,7 @@ const routes = [
     points: 23,
   },
   {
+    id: 1,
     time: '6:13-8:14',
     location: 'San Diego, California',
     distance: '12 mi',
@@ -31,6 +33,7 @@ const routes = [
     points: 23,
   },
   {
+    id: 2,
     time: '6:13-8:14',
     location: 'San Diego, California',
     distance: '12 mi',
@@ -41,7 +44,7 @@ const routes = [
 
 function RouteCard(route: typeof routes[0]) {
   return (
-    <Grid xs={12}>
+    <Grid xs={12} key={route.id}>
       <Card onClick={() => null}>
         <CardActionArea>
           <CardHeader

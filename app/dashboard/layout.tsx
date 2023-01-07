@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import Autocomplete from '@mui/material/Autocomplete';
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -115,15 +116,16 @@ function TopBar() {
 export default function DashboardLayout({ children }: {
   children: React.ReactNode;
 }) {
-  const [page, setPage] = useState(0);
-
   const routes = [
-    { label: 'Navigation', icon: <Map />, value: 'navigation' },
-    { label: 'Drives', icon: <Route />, value: 'drives' },
-    { label: 'Clips', icon: <VideoLibrary />, value: 'clips' },
-    // { label: 'Stats', icon: <Insights />, value: 'stats' },
-    { label: 'Settings', icon: <Settings />, value: 'settings' },
+    { label: 'Navigation', icon: <Map />, value: '/dashboard/navigation' },
+    { label: 'Drives', icon: <Route />, value: '/dashboard/drives' },
+    { label: 'Clips', icon: <VideoLibrary />, value: '/dashboard/clips' },
+    // { label: 'Stats', icon: <Insights />, value: '/dashboard/statistics' },
+    // { label: 'Settings', icon: <Settings />, value: '/dashboard/settings' },
   ];
+
+  const pathname = usePathname();
+  const [page, setPage] = useState(routes.findIndex((route) => route.value === pathname));
 
   return (
     <>
@@ -139,13 +141,13 @@ export default function DashboardLayout({ children }: {
             setPage(newValue);
           }}
         >
-          {routes.map((route, index) => (
+          {routes.map((route) => (
             <BottomNavigationAction
-              key={index}
+              key={route.value}
               label={route.label}
               icon={route.icon}
               component={Link}
-              href={`/dashboard/${route.value}`}
+              href={route.value}
             />
           ))}
         </BottomNavigation>
