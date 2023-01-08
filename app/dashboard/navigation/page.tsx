@@ -24,7 +24,6 @@ import Garage from '@mui/icons-material/Garage';
 import Search from '@mui/icons-material/Search';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import './styles.css';
 
 // https://visgl.github.io/react-map-gl/docs/get-started/tips-and-tricks
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiY29tbWFhaSIsImEiOiJjbGNpcHB1Nmw3Zjg3M3BwbjV2N2YxMjl5In0.73alGM0ovKLemvTo779Kag';
@@ -41,7 +40,7 @@ function SearchBar() {
       clearOnBlur
       handleHomeEndKeys
       options={options}
-      sx={{ position: 'absolute', bottom: 72, left: 16, right: 16, zIndex: 1 }}
+      sx={{ position: 'absolute', bottom: 104, left: 16, right: 16, zIndex: 1 }}
       freeSolo
       renderInput={(params) => (
         <Paper
@@ -150,14 +149,18 @@ export default function Navigation() {
       >
         {/* placeholder */}
         <Marker
-          color="red"
+          color="#51ff00"
           longitude={-117.1666}
           latitude={32.7206}
         />
 
         <GeolocateControl
           position="bottom-right"
-          style={{ marginBottom: '88px', marginRight: '16px' }}
+          style={{
+            marginBottom: '72px',
+            marginRight: '16px',
+            backgroundColor: theme.palette.background.default,
+          }}
         />
       </Map>
       {/*<DeviceCard />*/}

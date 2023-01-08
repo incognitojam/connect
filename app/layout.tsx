@@ -4,6 +4,7 @@ import { darkTheme, inter, lightTheme } from './theme';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 export default function RootLayout({ children }: {
   children: React.ReactNode;
