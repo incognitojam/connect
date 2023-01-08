@@ -2,13 +2,13 @@
 
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
-import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 import Public from '@mui/icons-material/Public';
 import Lock from '@mui/icons-material/Lock';
 import MoreVert from '@mui/icons-material/MoreVert';
@@ -40,7 +40,24 @@ const clips = [
   },
 ];
 
+function hexToRGB(hex: string, alpha: number): string {
+  if (hex.length === 4) {
+    hex = '#' + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
+  }
+  var r = parseInt(hex.slice(1, 3), 16),
+    g = parseInt(hex.slice(3, 5), 16),
+    b = parseInt(hex.slice(5, 7), 16);
+
+  if (alpha) {
+    return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+  } else {
+    return "rgb(" + r + ", " + g + ", " + b + ")";
+  }
+}
+
 function ClipCard(clip: typeof clips[0]) {
+  const theme = useTheme();
+
   const title = clip.name || clip.timestamp;
   const subheader = clip.name ? `Recorded ${clip.timestamp}` : null;
   const icon = clip.isPublic ? Public : Lock;
@@ -71,7 +88,7 @@ function ClipCard(clip: typeof clips[0]) {
               padding: 8,
               margin: 8,
               height: 40,
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              backgroundColor: hexToRGB(theme.palette.background.paper, 0.5),
               borderRadius: 4,
             }}>
               {clip.isPublic ? <Public /> : <Lock />}
@@ -82,10 +99,10 @@ function ClipCard(clip: typeof clips[0]) {
               right: 0,
               padding: 8,
               margin: 8,
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              backgroundColor: hexToRGB(theme.palette.background.paper, 0.5),
               borderRadius: 4,
             }}>
-              <span style={{ color: 'white' }}>{clip.duration}</span>
+              <span style={{ color: theme.palette.text.primary }}>{clip.duration}</span>
             </div>
           </div>
         </CardActionArea>
