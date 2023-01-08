@@ -14,7 +14,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import GpsFixed from '@mui/icons-material/GpsFixed';
 import Directions from '@mui/icons-material/Directions';
@@ -46,21 +45,21 @@ function SearchBar() {
       freeSolo
       renderInput={(params) => (
         <Paper
+          ref={params.InputProps.ref}
           component="form"
           sx={{
-            p: '2px 4px',
+            p: '4px 8px 4px 16px',
             display: 'flex',
             alignItems: 'center',
-            width: '100%',
             borderRadius: 4,
           }}
         >
           <InputBase
-            {...params}
             placeholder="where do you want to go?"
-            sx={{ p: '0 8px' }}
+            inputProps={params.inputProps}
+            sx={{ width: '100%' }}
           />
-          <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+          <IconButton type="button" sx={{ p: '8px' }} aria-label="search">
             <Search />
           </IconButton>
         </Paper>
