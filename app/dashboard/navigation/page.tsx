@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Map, { GeolocateControl, Marker } from 'react-map-gl';
 
 import Autocomplete from '@mui/material/Autocomplete';
@@ -24,6 +24,8 @@ import Garage from '@mui/icons-material/Garage';
 import Search from '@mui/icons-material/Search';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
+
+import { CarMarker } from '../../../components/icons';
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 const MAP_STYLE_DAY = 'mapbox://styles/commaai/clcl7mnu2000214s2zgcdly6e';
@@ -137,6 +139,29 @@ export default function Navigation() {
   const isDark = theme.palette.mode === 'dark';
   const mapStyle = isDark ? MAP_STYLE_NIGHT : MAP_STYLE_DAY;
 
+  const markers = useMemo(() => (
+    <>
+      <Marker
+        color="#51ff00"
+        longitude={-117.196276}
+        latitude={32.751203}
+        anchor="bottom"
+        offset={[0, 12.5]}
+      >
+        <CarMarker sx={{ width: '27px', height: '41px' }} />
+      </Marker>
+
+      <GeolocateControl
+        position="bottom-right"
+        style={{
+          marginBottom: '72px',
+          marginRight: '16px',
+          backgroundColor: theme.palette.background.default,
+        }}
+      />
+    </>
+  ), [theme]);
+
   return (
     <div>
       <Map
@@ -147,21 +172,7 @@ export default function Navigation() {
         mapboxAccessToken={MAPBOX_TOKEN}
         reuseMaps
       >
-        {/* placeholder */}
-        <Marker
-          color="#51ff00"
-          longitude={-117.1666}
-          latitude={32.7206}
-        />
-
-        <GeolocateControl
-          position="bottom-right"
-          style={{
-            marginBottom: '72px',
-            marginRight: '16px',
-            backgroundColor: theme.palette.background.default,
-          }}
-        />
+        {markers}
       </Map>
       {/*<DeviceCard />*/}
       <SearchBar />
