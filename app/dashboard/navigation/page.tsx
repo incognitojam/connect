@@ -25,8 +25,7 @@ import Search from '@mui/icons-material/Search';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-// https://visgl.github.io/react-map-gl/docs/get-started/tips-and-tricks
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiY29tbWFhaSIsImEiOiJjbGNpcHB1Nmw3Zjg3M3BwbjV2N2YxMjl5In0.73alGM0ovKLemvTo779Kag';
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 const MAP_STYLE_DAY = 'mapbox://styles/commaai/clcl7mnu2000214s2zgcdly6e';
 const MAP_STYLE_NIGHT = 'mapbox://styles/commaai/clcgvbi4f000q15t6o2s8gys3';
 
@@ -146,6 +145,7 @@ export default function Navigation() {
         style={{ position: 'fixed', top: 0, bottom: 56, height: 'auto' }}
         mapStyle={mapStyle}
         mapboxAccessToken={MAPBOX_TOKEN}
+        reuseMaps
       >
         {/* placeholder */}
         <Marker
