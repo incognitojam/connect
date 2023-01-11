@@ -1,7 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import Map, { GeolocateControl, Marker } from 'react-map-gl';
+import React, { useMemo, useState } from 'react';
+import Map, { GeolocateControl, MapboxEvent, Marker, useMap } from 'react-map-gl';
 
 import Autocomplete from '@mui/material/Autocomplete';
 import Chip from '@mui/material/Chip';
@@ -27,12 +27,13 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { CarMarker } from '../../../components/icons';
 
+import { Device, useDevices, useDeviceLocation } from '../../../api/devices';
+
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 const MAP_STYLE_DAY = 'mapbox://styles/commaai/clcl7mnu2000214s2zgcdly6e';
 const MAP_STYLE_NIGHT = 'mapbox://styles/commaai/clcgvbi4f000q15t6o2s8gys3';
 
 function SearchBar() {
-  const theme = useTheme();
   const options: string[] = [];
 
   return (
@@ -128,6 +129,44 @@ function DeviceCard() {
   );
 }
 
+function DeviceMarker(props: { device: Device }) {
+  const { device } = props;
+  const { dongle_id: dongleId } = device;
+  const { location } = useDeviceLocation(dongleId);
+
+  const { current: map } = useMap();
+
+  if (!location) {
+    return null;
+  }
+
+  const { lng, lat } = location;
+  if (!lng || !lat) {
+    return null;
+  }
+
+  const onClick = (e: MapboxEvent<MouseEvent>) => {
+    if (!map) return;
+    map.flyTo({
+      center: [lng, lat],
+      zoom: 17,
+    });
+  };
+
+  return (
+    <Marker
+      color="#51ff00"
+      longitude={location.lng}
+      latitude={location.lat}
+      anchor="bottom"
+      offset={[0, 12.5]}
+      onClick={onClick}
+    >
+      <CarMarker sx={{ width: '27px', height: '41px' }} />
+    </Marker>
+  );
+}
+
 export default function Navigation() {
   const [viewState, setViewState] = useState({
     latitude: 32.7206,
@@ -139,27 +178,23 @@ export default function Navigation() {
   const isDark = theme.palette.mode === 'dark';
   const mapStyle = isDark ? MAP_STYLE_NIGHT : MAP_STYLE_DAY;
 
-  const markers = useMemo(() => (
-    <>
-      <Marker
-        color="#51ff00"
-        longitude={-117.196276}
-        latitude={32.751203}
-        anchor="bottom"
-        offset={[0, 12.5]}
-      >
-        <CarMarker sx={{ width: '27px', height: '41px' }} />
-      </Marker>
+  const { devices } = useDevices();
 
-      <GeolocateControl
-        position="bottom-right"
-        style={{
-          marginBottom: '72px',
-          marginRight: '16px',
-          backgroundColor: theme.palette.background.default,
-        }}
-      />
-    </>
+  const markers = useMemo(() => (
+    devices && devices.map((device) => {
+      return <DeviceMarker key={device.dongle_id} device={device} />;
+    })
+  ), [devices]);
+
+  const controls = useMemo(() => (
+    <GeolocateControl
+      position="bottom-right"
+      style={{
+        marginBottom: '72px',
+        marginRight: '16px',
+        backgroundColor: theme.palette.background.default,
+      }}
+    />
   ), [theme]);
 
   return (
@@ -173,6 +208,7 @@ export default function Navigation() {
         reuseMaps
       >
         {markers}
+        {controls}
       </Map>
       {/*<DeviceCard />*/}
       <SearchBar />
