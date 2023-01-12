@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
-import Map, { GeolocateControl, MapboxEvent, Marker, useMap } from 'react-map-gl';
+import Map, { GeolocateControl, MapboxEvent, Marker, NavigationControl, useMap } from 'react-map-gl';
 
 import Autocomplete from '@mui/material/Autocomplete';
 import Chip from '@mui/material/Chip';
@@ -187,14 +187,25 @@ export default function Navigation() {
   ), [devices]);
 
   const controls = useMemo(() => (
-    <GeolocateControl
-      position="bottom-right"
-      style={{
-        marginBottom: '72px',
-        marginRight: '16px',
-        backgroundColor: theme.palette.background.default,
-      }}
-    />
+    <>
+      <GeolocateControl
+        position="bottom-right"
+        style={{
+          marginBottom: '88px',
+          marginRight: '16px',
+          backgroundColor: theme.palette.background.default,
+        }}
+      />
+      <NavigationControl
+        position="bottom-right"
+        showCompass={false}
+        style={{
+          marginRight: '16px',
+          marginBottom: '20px',
+          backgroundColor: theme.palette.background.default,
+        }}
+      />
+    </>
   ), [theme]);
 
   return (

@@ -17,7 +17,7 @@ export default function RootLayout({ children }: {
       */}
       <head />
       <body>
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={lightTheme}>
           <CssBaseline />
           {children}
         </ThemeProvider>
