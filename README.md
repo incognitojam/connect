@@ -1,6 +1,24 @@
+# connect
+
+![connect on the web and on mobile](https://comma.ai/images/img-connect-hero.53e75e49b3461dd4a430.png)
+
+comma connect is an app that lets you manage your openpilot experience. Recordings of your drives will upload to connect
+where they will be stored for 3 days. Subscribe to [comma prime](https://comma.ai/prime) to keep your drives accessible
+for 1 year.
+
+## Features
+
+- Cloud storage of drive videos
+- Turn-by-turn navigation
+- Export and share clips
+- Live GPS tracking
+- Take pictures remotely
+
+## Development
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+### Getting Started
 
 First, run the development server:
 
@@ -22,17 +40,11 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+### Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/)

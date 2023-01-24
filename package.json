@@ -1,7 +1,13 @@
 {
   "name": "connect",
-  "version": "0.1.0",
-  "private": true,
+  "version": "2.0.0",
+  "homepage": "https://connect.comma.ai",
+  "license": "MIT",
+  "author": "comma.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commaai/connect.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
