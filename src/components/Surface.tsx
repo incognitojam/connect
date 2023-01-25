@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 export interface SurfaceProps {
   className?: string
@@ -10,5 +10,5 @@ export interface SurfaceProps {
 export default function Surface({ className, children, variant }: SurfaceProps) {
   const bg = variant ? 'bg-surface-variant' : 'bg-surface'
   const text = variant ? 'text-on-surface-variant' : 'text-on-surface'
-  return <div className={classNames(bg, text, className)}>{children}</div>
+  return <div className={clsx(bg, text, className)}>{children}</div>
 }

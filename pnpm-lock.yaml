@@ -8,6 +8,7 @@ specifiers:
   '@types/react-dom': 18.0.10
   autoprefixer: ^10.4.13
   classnames: ^2.3.2
+  clsx: ^1.2.1
   eslint: 8.32.0
   eslint-config-next: 13.1.5
   eslint-config-prettier: ^8.6.0
@@ -31,6 +32,7 @@ dependencies:
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
   classnames: 2.3.2
+  clsx: 1.2.1
   eslint: 8.32.0
   eslint-config-next: 13.1.5_7uibuqfxkfaozanbtbziikiqje
   lodash.kebabcase: 4.1.1
@@ -599,6 +601,11 @@ packages:
 
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+    dev: false
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
     dev: false
 
   /color-convert/2.0.1:
