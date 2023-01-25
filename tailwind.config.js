@@ -2,7 +2,16 @@
 module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        ripple: {
+          '100%': {
+            transform: 'scale(4)',
+            opacity: 0,
+          },
+        },
+      },
+    },
   },
   plugins: [],
 };
