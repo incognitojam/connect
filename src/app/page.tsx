@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="mx-auto flex max-w-md items-center space-x-4 rounded-xl bg-white p-6 shadow-lg">
+      <div className="elevation-2 mx-auto flex max-w-md items-center space-x-4 rounded-xl bg-white p-6">
         <div className="shrink-0">
           <img className="h-12 w-12" src="/vercel.svg" alt="ChitChat Logo" />
         </div>

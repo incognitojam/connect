@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <html data-theme="light" lang="en">
       <head />
-      <body>{children}</body>
+      <body className="bg-surface">{children}</body>
     </html>
   )
 }
