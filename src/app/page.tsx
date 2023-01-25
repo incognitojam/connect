@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import { Inter } from '@next/font/google'
-import { Switch, Tab } from '@headlessui/react'
+import { Tab } from '@headlessui/react'
 
 import Button from '@/components/Button'
+import Switch from '@/components/Switch'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,15 +13,11 @@ export default function Home() {
   const [enabled, setEnabled] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
 
-  const pages = [
-    'Navigation',
-    'Timeline',
-    'Clips',
-  ]
+  const pages = ['Navigation', 'Timeline', 'Clips']
 
   return (
     <>
-      <div className="mx-auto flex max-w-sm items-center space-x-4 rounded-xl bg-white p-6 shadow-lg">
+      <div className="mx-auto flex max-w-md items-center space-x-4 rounded-xl bg-white p-6 shadow-lg">
         <div className="shrink-0">
           <img className="h-12 w-12" src="/vercel.svg" alt="ChitChat Logo" />
         </div>
@@ -28,13 +25,9 @@ export default function Home() {
           <div className="text-xl font-medium text-black">ChitChat</div>
           <p className="text-slate-500">You have a new message!</p>
           <Button>Click me</Button>
-          <Switch
-            checked={enabled}
-            onChange={setEnabled}
-            className={`${
-              enabled ? 'bg-primary-50' : 'bg-gray-200'
-            } relative inline-flex h-6 w-11 items-center rounded-full transition`}
-          >
+          <Button color="secondary">Click me</Button>
+          <Button color="tertiary">Click me</Button>
+          <Switch color="tertiary" checked={enabled} onChange={setEnabled}>
             <span className="sr-only">Enable notifications</span>
             <span
               className={`${

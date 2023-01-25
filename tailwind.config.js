@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 const { createThemes } = require('tw-colors')
 const kebabcase = require('lodash.kebabcase')
 
@@ -16,8 +18,12 @@ module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
+      },
       colors: {
-        ...theme.palettes,
+        // ...theme.palettes,
       },
       keyframes: {
         ripple: {

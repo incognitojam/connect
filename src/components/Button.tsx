@@ -2,11 +2,17 @@ import React, { MouseEvent, ReactNode } from 'react'
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  color?: 'primary' | 'secondary' | 'tertiary'
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
   children: ReactNode | ReactNode[]
 }
 
-export default function Button({ children, onClick, ...rest }: ButtonProps) {
+export default function Button({
+  color,
+  children,
+  onClick,
+  ...rest
+}: ButtonProps) {
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     const button = e.currentTarget
 
@@ -39,9 +45,23 @@ export default function Button({ children, onClick, ...rest }: ButtonProps) {
     onClick && onClick(e)
   }
 
+  color = color || 'primary'
+
+  const bg = {
+    primary: 'bg-primary',
+    secondary: 'bg-secondary',
+    tertiary: 'bg-tertiary',
+  }[color]
+
+  const text = {
+    primary: 'text-on-primary',
+    secondary: 'text-on-secondary',
+    tertiary: 'text-on-tertiary',
+  }[color]
+
   return (
     <button
-      className="relative overflow-hidden rounded-md bg-primary-50 px-4 py-2 text-white shadow-md transition hover:bg-primary-40 hover:shadow-lg"
+      className={`relative overflow-hidden rounded-full ${bg} px-4 py-2 font-mono uppercase ${text} shadow-sm transition hover:shadow-lg`}
       onClick={handleClick}
       {...rest}
     >
