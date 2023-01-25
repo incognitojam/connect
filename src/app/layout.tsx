@@ -19,11 +19,11 @@ export default function RootLayout({
   return (
     <html
       className={`${inter.variable} ${jetbrainsMono.variable}`}
-      data-theme="light"
+      data-theme="dark"
       lang="en"
     >
       <head />
-      <body className="bg-surface">{children}</body>
+      <body className="bg-background text-on-background">{children}</body>
     </html>
   )
 }

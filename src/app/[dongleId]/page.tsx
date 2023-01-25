@@ -1,3 +1,6 @@
+import React from 'react'
+import Surface from '@/components/Surface'
+
 export default function Dashboard() {
   return (
     <>
@@ -6,6 +9,10 @@ export default function Dashboard() {
       <p className="text-2xl">Inter</p>
 
       <p className="text-2xl">JetBrains Mono</p>
+
+      <Surface className="elevation-3 max-w-md">
+        <p className="text-2xl">Surface</p>
+      </Surface>
 
       <p>lorem ipsum</p>
     </>
