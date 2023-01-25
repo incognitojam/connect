@@ -17,13 +17,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html data-theme="light" lang="en">
+    <html
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      data-theme="light"
+      lang="en"
+    >
       <head />
-      <body
-        className={`bg-surface ${inter.variable} ${jetbrainsMono.variable}`}
-      >
-        {children}
-      </body>
+      <body className="bg-surface">{children}</body>
     </html>
   )
 }
