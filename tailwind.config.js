@@ -1,14 +1,24 @@
+const { createThemes } = require('tw-colors')
 const kebabcase = require('lodash.kebabcase')
 
 const theme = require('./src/theme/theme.json')
-const colours = Object.entries(Object
-  .values(theme.schemes.dark))
+
+const getSchemeColours = (scheme) =>
+  Object.fromEntries(
+    Object.entries(theme.schemes[scheme]).map(([key, value]) => [
+      kebabcase(key),
+      value,
+    ]),
+  )
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
     extend: {
+      colors: {
+        ...theme.palettes,
+      },
       keyframes: {
         ripple: {
           '100%': {
@@ -19,5 +29,11 @@ module.exports = {
       },
     },
   },
-  plugins: [],
-};
+  plugins: [
+    createThemes(
+      Object.fromEntries(
+        ['light', 'dark'].map((scheme) => [scheme, getSchemeColours(scheme)]),
+      ),
+    ),
+  ],
+}

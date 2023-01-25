@@ -22,7 +22,7 @@ export default function Button({ children, onClick, ...rest }: ButtonProps) {
       'animate-[ripple_600ms_linear]',
       'rounded-full',
       'scale-50',
-      'bg-[rgba(255,255,255,0.5)]'
+      'bg-[rgba(255,255,255,0.5)]',
     )
 
     const ripple = button.getElementsByClassName('animate-ripple')[0]
@@ -36,12 +36,12 @@ export default function Button({ children, onClick, ...rest }: ButtonProps) {
       circle.remove()
     }, 550)
 
-    onClick && onClick(e);
+    onClick && onClick(e)
   }
 
   return (
     <button
-      className="relative overflow-hidden rounded-md bg-blue-600 px-4 py-2 text-white shadow-md transition hover:bg-blue-700 hover:shadow-lg"
+      className="relative overflow-hidden rounded-md bg-primary-50 px-4 py-2 text-white shadow-md transition hover:bg-primary-40 hover:shadow-lg"
       onClick={handleClick}
       {...rest}
     >

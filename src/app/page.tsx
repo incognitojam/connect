@@ -32,7 +32,7 @@ export default function Home() {
             checked={enabled}
             onChange={setEnabled}
             className={`${
-              enabled ? 'bg-blue-600' : 'bg-gray-200'
+              enabled ? 'bg-primary-50' : 'bg-gray-200'
             } relative inline-flex h-6 w-11 items-center rounded-full transition`}
           >
             <span className="sr-only">Enable notifications</span>
@@ -52,8 +52,8 @@ export default function Home() {
               key={index}
               className={({ selected }) =>
                 `py-2 px-4 text-sm font-medium ${
-                  selected ? 'text-blue-600' : 'text-gray-500'
-                } border border-blue-600 rounded-md`
+                  selected ? 'text-primary-40' : 'text-gray-500'
+                } border border-primary-40 rounded-md`
               }
             >
               {page}
