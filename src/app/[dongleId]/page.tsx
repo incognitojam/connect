@@ -10,8 +10,8 @@ export default function Dashboard() {
 
       <p className="text-2xl">JetBrains Mono</p>
 
-      <Surface className="elevation-3 max-w-md">
-        <p className="text-2xl">Surface</p>
+      <Surface className="elevation-3 max-w-md rounded-lg p-4" variant>
+        <p className="text-4xl">Surface</p>
       </Surface>
 
       <p>lorem ipsum</p>
