@@ -1,7 +1,7 @@
-export default function DefaultTags() {
+export default function DefaultTags({ title }: { title: string }) {
   return (
     <>
-      <title>connect</title>
+      <title>{title}</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content="manage your openpilot experience" />
       <link rel="icon" href="/favicon.ico" />
