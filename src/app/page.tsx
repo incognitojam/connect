@@ -1,13 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { Inter } from '@next/font/google'
 import { Tab } from '@headlessui/react'
 
+import AppBar from '@/components/AppBar'
 import Button from '@/components/Button'
 import Switch from '@/components/Switch'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [enabled, setEnabled] = useState(false)
@@ -17,6 +15,10 @@ export default function Home() {
 
   return (
     <>
+      <AppBar>
+        <h1 className="text-3xl font-bold">comma connect</h1>
+      </AppBar>
+
       <div className="elevation-2 mx-auto flex max-w-md items-center space-x-4 rounded-xl bg-white p-6">
         <div className="shrink-0">
           <img className="h-12 w-12" src="/vercel.svg" alt="ChitChat Logo" />
