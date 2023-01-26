@@ -1,6 +1,9 @@
+'use client'
+
 import React from 'react'
 import Surface from '@/components/Surface'
 import Head from 'next/head'
+import Button from '@/components/Button'
 
 export default function Dashboard() {
   return (
@@ -17,6 +20,8 @@ export default function Dashboard() {
 
       <Surface className="elevation-3 max-w-md rounded-lg p-4" variant>
         <p className="text-4xl">Surface</p>
+
+        <Button color="primary">Button</Button>
       </Surface>
 
       <p>lorem ipsum</p>
