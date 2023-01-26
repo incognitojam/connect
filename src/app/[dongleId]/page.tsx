@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import Surface from '@/components/Surface'
 import Head from 'next/head'
