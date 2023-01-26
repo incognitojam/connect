@@ -7,12 +7,16 @@ export interface ButtonProps
   color?: 'primary' | 'secondary' | 'tertiary'
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
   children: ReactNode | ReactNode[]
+  startIcon?: ReactNode
+  endIcon?: ReactNode
 }
 
 export default function Button({
   color,
   children,
   onClick,
+  startIcon,
+  endIcon,
   ...rest
 }: ButtonProps) {
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -61,13 +65,17 @@ export default function Button({
     tertiary: 'text-on-tertiary',
   }[color]
 
+  const padding = `${startIcon ? 'pl-4' : 'pl-6'} ${endIcon ? 'pr-4' : 'pr-6'}`
+
   return (
     <button
-      className={`relative overflow-hidden rounded-full ${bg} px-4 py-2 font-mono uppercase ${text} shadow-sm transition hover:shadow-lg`}
+      className={`relative overflow-hidden rounded-full ${bg} h-[40px] ${padding} py-1 font-mono uppercase ${text} text-[16px] shadow-sm transition hover:shadow-lg`}
       onClick={handleClick}
       {...rest}
     >
-      {children}
+      {startIcon && <span className="mr-2">{startIcon}</span>}
+      <span className="align-[1px]">{children}</span>
+      {endIcon && <span className="ml-2">{endIcon}</span>}
     </button>
   )
 }

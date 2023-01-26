@@ -1,14 +1,16 @@
 import React from 'react'
-import Surface from '@/components/Surface'
-import Head from 'next/head'
+
+import AppBar from '@/components/AppBar'
 import Button from '@/components/Button'
+import Icon from '@/components/Icon'
+import Surface from '@/components/Surface'
 
 export default function Dashboard() {
   return (
     <>
-      <Head>
-        <title key="title">dashboard - connect</title>
-      </Head>
+      <AppBar>
+        <h1 className="text-3xl font-bold">comma connect</h1>
+      </AppBar>
 
       <h1 className="text-6xl">Dashboard</h1>
 
@@ -19,7 +21,9 @@ export default function Dashboard() {
       <Surface className="elevation-3 max-w-md rounded-lg p-4" variant>
         <p className="text-4xl">Surface</p>
 
-        <Button color="primary">Button</Button>
+        <Button color="primary" startIcon={<Icon size="24">home</Icon>}>
+          Button
+        </Button>
       </Surface>
 
       <p>lorem ipsum</p>
