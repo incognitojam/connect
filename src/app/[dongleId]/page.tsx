@@ -21,12 +21,17 @@ export default function Dashboard() {
       <Surface className="elevation-3 max-w-md rounded-lg p-4" variant>
         <p className="text-4xl">Surface</p>
 
+        <div className="text-secondary">
+          <Icon size="40">home</Icon>
+          <Icon size="40">map</Icon>
+          <Icon size="40">directions_car</Icon>
+          <Icon size="40">video_library</Icon>
+        </div>
+
         <Button color="primary" startIcon={<Icon size="24">home</Icon>}>
           Button
         </Button>
       </Surface>
-
-      <p>lorem ipsum</p>
     </>
   )
 }
