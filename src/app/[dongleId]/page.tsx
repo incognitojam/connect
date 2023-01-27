@@ -3,15 +3,16 @@ import React from 'react'
 import AppBar from '@/components/AppBar'
 import Button from '@/components/Button'
 import Icon from '@/components/Icon'
+import IconButton from '@/components/IconButton'
 import Surface from '@/components/Surface'
 
 export default function Dashboard() {
   return (
     <>
       <AppBar>
-        <Icon className="mr-2" size="24">menu</Icon>
+        <IconButton className="mr-4" icon={<Icon size="24">menu</Icon>} />
 
-        <h1 className="text-3xl font-bold">comma connect</h1>
+        <h1 className="text-[24px] font-bold">comma connect</h1>
       </AppBar>
 
       <h1 className="text-6xl">Dashboard</h1>

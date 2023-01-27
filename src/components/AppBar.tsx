@@ -10,17 +10,7 @@ export default function AppBar({ children, className }: AppBarProps) {
   return (
     <div
       className={clsx(
-        'bg-surface-variant',
-        'text-on-surface-variant',
-        'flex',
-        'items-center',
-        'relative',
-        'top-0',
-        'left-0',
-        'right-0',
-        'elevation-1',
-        'h-20',
-        'px-8',
+        'elevation-1 relative inset-x-0 top-0 flex h-20 items-center bg-surface-variant px-8 text-on-surface-variant',
         className,
       )}
     >
