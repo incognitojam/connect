@@ -6,8 +6,8 @@ import Icon, { IconProps } from '@/components/Icon'
 
 export interface IconButtonProps extends ButtonBaseProps {
   children: string
-  filled: IconProps['filled']
-  size: IconProps['size']
+  filled?: IconProps['filled']
+  size?: IconProps['size']
 }
 
 export default function IconButton({
