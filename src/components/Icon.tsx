@@ -1,17 +1,24 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 
 import React from 'react'
+import clsx from 'clsx'
 
 export interface IconProps {
+  className?: string
   children: React.ReactNode
   size?: '20' | '24' | '40' | '48'
 }
 
-export default function Icon({ children, size }: IconProps) {
+export default function Icon({ className, children, size }: IconProps) {
   const sizeStyle = `size-${size || '24'}`
   return (
     <span
-      className={`material-symbols-outlined align-text-bottom ${sizeStyle}`}
+      className={clsx(
+        'material-symbols-outlined',
+        'align-text-bottom',
+        sizeStyle,
+        className,
+      )}
     >
       {children}
     </span>
