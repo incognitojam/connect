@@ -1,17 +1,48 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Tab } from '@headlessui/react'
 
 import AppBar from '@/components/AppBar'
 import Button from '@/components/Button'
 import Switch from '@/components/Switch'
+import Surface from '@/components/Surface'
 
 export default function Home() {
   const [enabled, setEnabled] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const pages = ['Navigation', 'Timeline', 'Clips']
+  const cards = [
+    ['bg-primary', 'text-on-primary'],
+    ['bg-secondary', 'text-on-secondary'],
+    ['bg-tertiary', 'text-on-tertiary'],
+    ['bg-error', 'text-on-error'],
+
+    ['bg-on-primary', 'text-primary'],
+    ['bg-on-secondary', 'text-secondary'],
+    ['bg-on-tertiary', 'text-tertiary'],
+    ['bg-on-error', 'text-error'],
+
+    ['bg-primary-container', 'text-on-primary-container'],
+    ['bg-secondary-container', 'text-on-secondary-container'],
+    ['bg-tertiary-container', 'text-on-tertiary-container'],
+    ['bg-error-container', 'text-on-error-container'],
+
+    ['bg-on-primary-container', 'text-primary-container'],
+    ['bg-on-secondary-container', 'text-secondary-container'],
+    ['bg-on-tertiary-container', 'text-tertiary-container'],
+    ['bg-on-error-container', 'text-error-container'],
+  ].map(([bg, text]) => (
+    <Surface
+      className={`elevation-3 hover:elevation-5 mt-4 max-w-md rounded-lg p-4 transition ${bg} ${text}`}
+      key={bg}
+    >
+      {bg}
+      <br />
+      {text}
+    </Surface>
+  ))
 
   return (
     <>
@@ -56,6 +87,8 @@ export default function Home() {
           ))}
         </Tab.List>
       </Tab.Group>
+
+      {cards}
     </>
   )
 }

@@ -5,13 +5,15 @@ const kebabcase = require('lodash.kebabcase')
 
 const theme = require('./src/theme/theme.json')
 
-const getSchemeColours = (scheme) =>
-  Object.fromEntries(
+const getSchemeColours = (scheme) => ({
+  ...Object.fromEntries(
     Object.entries(theme.schemes[scheme]).map(([key, value]) => [
       kebabcase(key),
       value,
     ]),
-  )
+  ),
+  white: '#ffffff',
+})
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -21,9 +23,6 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
-      },
-      colors: {
-        // ...theme.palettes,
       },
       keyframes: {
         ripple: {
