@@ -26,6 +26,12 @@ export default function Button({
     tertiary: 'bg-tertiary',
   }[color]
 
+  const hoverBg = {
+    primary: 'hover:bg-primary-hover',
+    secondary: 'hover:bg-secondary-hover',
+    tertiary: 'hover:bg-tertiary-hover',
+  }[color]
+
   const text = {
     primary: 'text-on-primary',
     secondary: 'text-on-secondary',
@@ -37,8 +43,9 @@ export default function Button({
   return (
     <ButtonBase
       className={clsx(
-        `py-1 font-mono uppercase shadow-sm transition hover:shadow-lg`,
+        `py-1 font-mono uppercase contrast-100 transition hover:shadow-lg hover:contrast-115`,
         bg,
+        hoverBg,
         padding,
         text,
         className,
