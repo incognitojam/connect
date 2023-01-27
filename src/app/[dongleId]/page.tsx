@@ -37,7 +37,7 @@ export default function Dashboard() {
 
         <Button
           color="primary"
-          startIcon={<Icon>home</Icon>}
+          startIcon={<Icon filled>home</Icon>}
           endIcon={<Icon>arrow_forward</Icon>}
         >
           Button
