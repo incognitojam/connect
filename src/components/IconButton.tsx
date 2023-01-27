@@ -6,12 +6,14 @@ import Icon, { IconProps } from '@/components/Icon'
 
 export interface IconButtonProps extends ButtonBaseProps {
   children: string
+  filled: IconProps['filled']
   size: IconProps['size']
 }
 
 export default function IconButton({
   className,
   children,
+  filled,
   size,
   ...rest
 }: IconButtonProps) {
@@ -23,7 +25,9 @@ export default function IconButton({
   }[size || '24']
   return (
     <ButtonBase className={clsx(buttonSize, className)} {...rest}>
-      <Icon size={size}>{children}</Icon>
+      <Icon filled={filled} size={size}>
+        {children}
+      </Icon>
     </ButtonBase>
   )
 }
