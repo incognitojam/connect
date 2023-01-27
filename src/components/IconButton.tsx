@@ -16,10 +16,10 @@ export default function IconButton({
   ...rest
 }: IconButtonProps) {
   const buttonSize = {
-    '20': 'h-8 w-8',
-    '24': 'h-10 w-10',
-    '40': 'h-12 w-12',
-    '48': 'h-14 w-14',
+    '20': 'w-[28px] h-[28px]',
+    '24': 'w-[32px] h-[32px]',
+    '40': 'w-[48px] h-[48px]',
+    '48': 'w-[56px] h-[56px]',
   }[size || '24']
   return (
     <ButtonBase className={clsx(buttonSize, className)} {...rest}>

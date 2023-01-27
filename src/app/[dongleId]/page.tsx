@@ -10,7 +10,9 @@ export default function Dashboard() {
   return (
     <>
       <AppBar>
-        <IconButton className="mr-4" size="40">menu</IconButton>
+        <IconButton className="mr-4" size="40">
+          menu
+        </IconButton>
 
         <h1 className="text-[24px] font-bold">comma connect</h1>
       </AppBar>
