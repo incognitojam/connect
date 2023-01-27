@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 
 import AppBar from '@/components/AppBar'
 import Button from '@/components/Button'
@@ -8,19 +10,14 @@ import Surface from '@/components/Surface'
 
 export default function Dashboard() {
   return (
-    <>
+    <div className="p-4 pt-24">
       <AppBar>
-        <IconButton className="mr-4" size="40">
-          menu
-        </IconButton>
-
         <h1 className="text-[24px] font-bold">comma connect</h1>
       </AppBar>
 
       <h1 className="text-6xl">Dashboard</h1>
 
       <p className="text-2xl">Inter</p>
-
       <p className="font-mono text-2xl">JetBrains Mono</p>
 
       <Surface className="elevation-3 max-w-md rounded-lg p-4" variant>
@@ -43,6 +40,6 @@ export default function Dashboard() {
           Button
         </Button>
       </Surface>
-    </>
+    </div>
   )
 }
