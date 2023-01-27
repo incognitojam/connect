@@ -27,7 +27,9 @@ export default function Dashboard() {
         <p className="text-4xl">Surface</p>
 
         <div className="text-secondary">
-          <Icon size="40">home</Icon>
+          <Icon filled size="40">
+            home
+          </Icon>
           <Icon size="40">map</Icon>
           <Icon size="40">directions_car</Icon>
           <Icon size="40">video_library</Icon>

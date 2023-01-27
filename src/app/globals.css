@@ -23,20 +23,36 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3), 0 8px 12px 6px rgba(0, 0, 0, 0.15);
   }
 
-  .material-symbols-outlined.size-20 {
-    font-size: 20px;
-    font-variation-settings: 'OPSZ' 20;
-  }
-  .material-symbols-outlined.size-24 {
-    font-size: 24px;
-    font-variation-settings: 'OPSZ' 24;
-  }
-  .material-symbols-outlined.size-40 {
-    font-size: 40px;
-    font-variation-settings: 'OPSZ' 40;
-  }
-  .material-symbols-outlined.size-48 {
-    font-size: 48px;
-    font-variation-settings: 'OPSZ' 48;
+  .material-symbols-outlined {
+    transition: font-variation-settings 0.2s;
+    font-variation-settings: 'FILL' var(--font-filled, 0), 'OPSZ' var(--font-opsz, 24);
+
+    &.size-20 {
+      --font-opsz: 20;
+      font-size: 20px;
+    }
+
+    &.size-24 {
+      --font-opsz: 24;
+      font-size: 24px;
+    }
+
+    &.size-40 {
+      --font-opsz: 40;
+      font-size: 40px;
+    }
+
+    &.size-48 {
+      --font-opsz: 48;
+      font-size: 48px;
+    }
+
+    &.icon-outline {
+      --font-filled: 0;
+    }
+
+    &.icon-filled {
+      --font-filled: 1;
+    }
   }
 }
