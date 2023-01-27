@@ -24,7 +24,14 @@ export default function IconButton({
     '48': 'w-[56px] h-[56px]',
   }[size || '24']
   return (
-    <ButtonBase className={clsx(buttonSize, className)} {...rest}>
+    <ButtonBase
+      className={clsx(
+        'before:absolute before:inset-0 before:bg-white before:opacity-0 before:transition before:hover:opacity-20',
+        buttonSize,
+        className,
+      )}
+      {...rest}
+    >
       <Icon filled={filled} size={size}>
         {children}
       </Icon>
