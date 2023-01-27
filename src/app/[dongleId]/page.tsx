@@ -33,7 +33,11 @@ export default function Dashboard() {
           <Icon size="40">video_library</Icon>
         </div>
 
-        <Button color="primary" startIcon={<Icon size="24">home</Icon>}>
+        <Button
+          color="primary"
+          startIcon={<Icon>home</Icon>}
+          endIcon={<Icon>arrow_forward</Icon>}
+        >
           Button
         </Button>
       </Surface>
