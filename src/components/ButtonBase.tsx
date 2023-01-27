@@ -51,7 +51,7 @@ export default function ButtonBase({
   return (
     <button
       className={clsx(
-        `relative h-[40px] overflow-hidden rounded-full text-[16px] hover:shadow-lg`,
+        `relative h-[40px] overflow-hidden rounded-full text-[16px]`,
         className,
       )}
       onClick={handleClick}
