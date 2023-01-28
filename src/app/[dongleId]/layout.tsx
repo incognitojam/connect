@@ -76,9 +76,9 @@ export default function DashboardLayout({
         {children}
 
         <NavigationBar>
-          <NavigationBarItem>Map</NavigationBarItem>
-          <NavigationBarItem>Timeline</NavigationBarItem>
-          <NavigationBarItem>Clips</NavigationBarItem>
+          <NavigationBarItem icon="map">Map</NavigationBarItem>
+          <NavigationBarItem icon="route">Timeline</NavigationBarItem>
+          <NavigationBarItem icon="video_library">Clips</NavigationBarItem>
         </NavigationBar>
       </animated.main>
     </div>
