@@ -1,11 +1,7 @@
-'use client'
+import React from 'react'
 
-import React, { useState } from 'react'
-
-import AppBar from '@/components/AppBar'
 import Button from '@/components/Button'
 import Icon from '@/components/Icon'
-import IconButton from '@/components/IconButton'
 import Surface from '@/components/Surface'
 
 export default function Dashboard() {
