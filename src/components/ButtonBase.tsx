@@ -18,14 +18,15 @@ export default function ButtonBase({
 }: ButtonBaseProps) {
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     const button = e.currentTarget
+    const rect = button.getBoundingClientRect()
 
     const circle = document.createElement('span')
     const diameter = Math.max(button.clientWidth, button.clientHeight)
     const radius = diameter / 2
 
     circle.style.width = circle.style.height = `${diameter}px`
-    circle.style.left = `${e.clientX - button.offsetLeft - radius}px`
-    circle.style.top = `${e.clientY - button.offsetTop - radius}px`
+    circle.style.left = `${e.clientX - rect.left - radius}px`
+    circle.style.top = `${e.clientY - rect.top - radius}px`
     circle.classList.add(
       'absolute',
       'animate-[ripple_600ms_linear]',
