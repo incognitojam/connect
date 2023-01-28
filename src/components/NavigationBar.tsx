@@ -33,7 +33,7 @@ export default function NavigationBar(props: {
   const items = Children.toArray(props.children)
 
   return (
-    <div className="absolute inset-x-0 bottom-0 flex h-20 flex-row gap-x-2 bg-black text-on-surface">
+    <div className="pb-safe absolute inset-x-0 bottom-0 flex h-20 flex-row gap-x-2 bg-black text-on-surface">
       {items.map((item, index) => {
         return cloneElement<NavigationBarItemProps>(
           item as React.ReactElement,
