@@ -69,11 +69,12 @@ export default function DashboardLayout({
       </nav>
 
       <animated.main
-        {...bind()}
-        className="relative h-screen flex-1 touch-none overflow-y-auto bg-background"
+        className="relative h-screen flex-1 overflow-y-auto bg-background"
         style={contentStyles}
       >
-        {children}
+        <div className="touch-none h-screen" {...bind()}>
+          {children}
+        </div>
 
         <NavigationBar>
           <NavigationBarItem icon="map">Map</NavigationBarItem>
