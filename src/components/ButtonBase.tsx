@@ -50,10 +50,7 @@ export default function ButtonBase({
 
   return (
     <button
-      className={clsx(
-        `relative overflow-hidden`,
-        className,
-      )}
+      className={clsx(`relative overflow-hidden`, className)}
       onClick={handleClick}
       {...rest}
     >
