@@ -5,6 +5,7 @@ import { animated, useSpring } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
 
 import AppBar from '@/components/AppBar'
+import NavigationBar, { NavigationBarItem } from '@/components/NavigationBar'
 
 export default function DashboardLayout({
   children,
@@ -48,7 +49,8 @@ export default function DashboardLayout({
       <nav>
         <div
           {...bind()}
-          className="absolute inset-y-0 left-0 w-64 overflow-y-auto bg-surface-variant text-on-surface-variant touch-pan-y">
+          className="absolute inset-y-0 left-0 w-64 touch-pan-y overflow-y-auto bg-surface-variant text-on-surface-variant"
+        >
           <AppBar relative>
             <h1 className="text-[24px] font-bold">comma connect</h1>
           </AppBar>
@@ -103,6 +105,12 @@ export default function DashboardLayout({
         style={styles}
       >
         {children}
+
+        <NavigationBar>
+          <NavigationBarItem>Map</NavigationBarItem>
+          <NavigationBarItem>Timeline</NavigationBarItem>
+          <NavigationBarItem>Clips</NavigationBarItem>
+        </NavigationBar>
       </animated.main>
     </div>
   )
