@@ -43,7 +43,7 @@ export default function Button({
   return (
     <ButtonBase
       className={clsx(
-        `py-1 font-mono uppercase contrast-100 transition hover:shadow-lg hover:contrast-115`,
+        `h-[40px] rounded-full py-1 font-mono text-[16px] uppercase contrast-100 transition hover:shadow-lg hover:contrast-115`,
         bg,
         hoverBg,
         padding,
