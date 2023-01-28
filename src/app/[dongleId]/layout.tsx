@@ -4,6 +4,8 @@ import React from 'react'
 import { animated, useSpring } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
 
+import AppBar from '@/components/AppBar'
+
 export default function DashboardLayout({
   children,
 }: {
@@ -16,38 +18,92 @@ export default function DashboardLayout({
   const [styles, api] = useSpring({ x: 0 }, [])
   const { x } = styles
 
-  const bind = useDrag(({ last, movement: [mx], memo = x.get(), velocity }) => {
-    if (last) {
-      const projection = (startVelocity: number) =>
-        (startVelocity * 0.998) / (1 - 0.998)
+  const bind = useDrag(
+    ({ last, movement: [mx], memo = x.get(), direction, velocity }) => {
+      if (last) {
+        const projection = (startVelocity: number) =>
+          (startVelocity * 0.998) / (1 - 0.998)
 
-      console.log(velocity, projection(velocity[0]), memo + mx + projection(velocity[0]))
+        const velocityX = velocity[0] * direction[0]
+        const projectedX = projection(velocityX)
+        console.log({
+          velocityX,
+          projectedX,
+          result: memo + mx + projectedX,
+        })
 
-      const projectedEndpoint = memo + mx + projection(velocity[0])
-      const open = projectedEndpoint > 32
-      api.start({ x: open ? 256 : 0 })
+        const projectedEndpoint = memo + mx + projection(velocityX)
+        const open = projectedEndpoint > 96
+        api.start({ x: open ? 256 : 0 })
+        return memo
+      }
+
+      api.set({ x: Math.min(256, Math.max(0, memo + mx)) })
       return memo
-    }
-
-    api.set({ x: Math.min(256, Math.max(0, memo + mx)) })
-    return memo
-  })
+    },
+  )
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       <nav>
-        <div className="absolute inset-y-0 left-0 mt-20 w-64 bg-surface-variant text-on-surface-variant">
-          hello
+        <div
+          {...bind()}
+          className="absolute inset-y-0 left-0 w-64 overflow-y-auto bg-surface-variant text-on-surface-variant touch-pan-y">
+          <AppBar relative>
+            <h1 className="text-[24px] font-bold">comma connect</h1>
+          </AppBar>
+
+          <p>Item 1</p>
+          <p>Item 2</p>
+          <p>Item 3</p>
+          <p>Item 4</p>
+          <p>Item 5</p>
+          <p>Item 6</p>
+
+          <p>Item 1</p>
+          <p>Item 2</p>
+          <p>Item 3</p>
+          <p>Item 4</p>
+          <p>Item 5</p>
+          <p>Item 6</p>
+
+          <p>Item 1</p>
+          <p>Item 2</p>
+          <p>Item 3</p>
+          <p>Item 4</p>
+          <p>Item 5</p>
+          <p>Item 6</p>
+
+          <p>Item 1</p>
+          <p>Item 2</p>
+          <p>Item 3</p>
+          <p>Item 4</p>
+          <p>Item 5</p>
+          <p>Item 6</p>
+
+          <p>Item 1</p>
+          <p>Item 2</p>
+          <p>Item 3</p>
+          <p>Item 4</p>
+          <p>Item 5</p>
+          <p>Item 6</p>
+
+          <p>Item 1</p>
+          <p>Item 2</p>
+          <p>Item 3</p>
+          <p>Item 4</p>
+          <p>Item 5</p>
+          <p>Item 6</p>
         </div>
       </nav>
 
       <animated.main
         {...bind()}
-        className="relative h-screen flex-1 overflow-y-auto bg-background"
+        className="relative h-screen flex-1 touch-none overflow-y-auto bg-background"
         style={styles}
       >
         {children}
       </animated.main>
-    </>
+    </div>
   )
 }

@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <>
-      <AppBar>
+      <AppBar relative>
         <h1 className="text-3xl font-bold">comma connect</h1>
       </AppBar>
 

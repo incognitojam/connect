@@ -10,11 +10,7 @@ import Surface from '@/components/Surface'
 
 export default function Dashboard() {
   return (
-    <div className="p-4 pt-24">
-      <AppBar>
-        <h1 className="text-[24px] font-bold">comma connect</h1>
-      </AppBar>
-
+    <div className="p-4">
       <h1 className="text-6xl">Dashboard</h1>
 
       <p className="text-2xl">Inter</p>
