@@ -29,7 +29,10 @@ export function NavigationBarItem({
       ripple={false}
     >
       <Icon
-        className={clsx('flex transition', selected && 'scale-125')}
+        className={clsx(
+          'flex transition-all',
+          selected ? 'scale-125' : 'scale-100',
+        )}
         filled={selected}
       >
         {icon}
