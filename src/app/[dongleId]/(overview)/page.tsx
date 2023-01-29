@@ -1,8 +1,8 @@
 import React from 'react'
 
-import Button from '@/components/Button'
-import Icon from '@/components/Icon'
-import Surface from '@/components/Surface'
+import Button from '@/material/Button'
+import Icon from '@/material/Icon'
+import Surface from '@/material/Surface'
 
 export default function Dashboard({
   params: { dongleId },

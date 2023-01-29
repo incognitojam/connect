@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
-import Icon, { IconProps } from '@/components/Icon'
+import Icon, { IconProps } from '@/material/Icon'
 
 export interface NavigationBarItemProps {
   children: ReactNode

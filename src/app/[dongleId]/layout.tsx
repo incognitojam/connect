@@ -4,7 +4,7 @@ import React from 'react'
 import { animated, useSpring } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
 
-import NavigationBar, { NavigationBarItem } from '@/components/NavigationBar'
+import NavigationBar, { NavigationBarItem } from '@/material/NavigationBar'
 import useWindowDimensions from '@/hooks/dimensions'
 
 export default function DashboardLayout({
@@ -59,7 +59,7 @@ export default function DashboardLayout({
       <nav>
         <animated.div
           {...bind()}
-          className="absolute inset-y-0 left-0 w-screen touch-pan-y overflow-y-auto bg-surface text-on-surface-variant"
+          className="absolute inset-y-0 left-0 w-screen touch-pan-y overflow-y-auto bg-surface px-1 text-on-surface-variant"
           style={drawerStyles}
         >
           <h1 className="text-[24px] font-bold">comma connect</h1>

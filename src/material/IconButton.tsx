@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 
 import ButtonBase, { ButtonBaseProps } from './ButtonBase'
-import Icon, { IconProps } from '@/components/Icon'
+import Icon, { IconProps } from '@/material/Icon'
 
 export interface IconButtonProps extends ButtonBaseProps {
   children: string

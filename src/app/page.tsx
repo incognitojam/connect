@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react'
 
-import Button from '@/components/Button'
-import Switch from '@/components/Switch'
-import Surface from '@/components/Surface'
+import Button from '@/material/Button'
+import Switch from '@/material/Switch'
+import Surface from '@/material/Surface'
 import Link from 'next/link'
 
 export default function Home() {
