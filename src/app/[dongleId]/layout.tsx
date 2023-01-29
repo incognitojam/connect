@@ -19,6 +19,7 @@ export default function DashboardLayout({
 
   const { width } = useWindowDimensions()
 
+  // noinspection JSVoidFunctionReturnValueUsed
   const bind = useDrag(
     ({
       last,

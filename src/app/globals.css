@@ -4,10 +4,20 @@
 
 @layer base {
   html {
+    /* remove tap highlight */
     -webkit-tap-highlight-color: transparent;
+
+    /* prevent selecting text */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
   }
 
   html, body {
+    /*
+     * fill visible viewport
+     * https://developers.google.com/web/updates/2016/12/url-bar-resizing
+     */
     height: 100%;
   }
 }
