@@ -28,7 +28,7 @@ const handleClick = (onClick: ButtonBaseProps['onClick']) => {
       'animate-[ripple_600ms_linear]',
       'rounded-full',
       'scale-50',
-      'bg-[rgba(255,255,255,0.5)]',
+      'bg-[rgba(255,255,255,0.35)]',
     )
 
     const ripple = button.getElementsByClassName('animate-ripple')[0]
