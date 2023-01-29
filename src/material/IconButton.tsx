@@ -26,7 +26,7 @@ export default function IconButton({
   return (
     <ButtonBase
       className={clsx(
-        'before:absolute before:inset-0 before:bg-white before:opacity-0 before:transition before:hover:opacity-20',
+        'rounded-full before:absolute before:inset-0 before:rounded-full before:bg-white before:opacity-0 before:transition before:hover:opacity-20',
         buttonSize,
         className,
       )}
