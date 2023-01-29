@@ -3,7 +3,7 @@ import TopAppBar from '@/material/TopAppBar'
 
 export default function Timeline() {
   return (
-    <div className="p-4">
+    <div>
       <TopAppBar>Timeline</TopAppBar>
     </div>
   )
