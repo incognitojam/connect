@@ -69,7 +69,7 @@ export default function DashboardLayout({
       </nav>
 
       <animated.main
-        className="relative h-screen flex-1 overflow-y-auto"
+        className="relative h-screen flex-1 overflow-y-auto bg-background"
         style={contentStyles}
       >
         <div className="touch-none h-screen" {...bind()}>
