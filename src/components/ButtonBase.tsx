@@ -1,6 +1,6 @@
 'use client'
 
-import React, { MouseEvent, ReactNode } from 'react'
+import React, { MouseEvent, ReactNode, useMemo } from 'react'
 import clsx from 'clsx'
 
 export interface ButtonBaseProps
@@ -8,15 +8,11 @@ export interface ButtonBaseProps
   className?: string
   children?: ReactNode | ReactNode[]
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
+  ripple?: boolean
 }
 
-export default function ButtonBase({
-  className,
-  children,
-  onClick,
-  ...rest
-}: ButtonBaseProps) {
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+const handleClick = (onClick: ButtonBaseProps['onClick']) => {
+  return (e: MouseEvent<HTMLButtonElement>) => {
     const button = e.currentTarget
     const rect = button.getBoundingClientRect()
 
@@ -48,11 +44,23 @@ export default function ButtonBase({
 
     onClick && onClick(e)
   }
+}
 
+export default function ButtonBase({
+  className,
+  children,
+  onClick,
+  ripple = true,
+  ...rest
+}: ButtonBaseProps) {
+  const onClickHandler = useMemo(
+    () => (ripple ? handleClick(onClick) : onClick),
+    [ripple, onClick],
+  )
   return (
     <button
       className={clsx(`relative overflow-hidden`, className)}
-      onClick={handleClick}
+      onClick={onClickHandler}
       {...rest}
     >
       {children}

@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 export interface IconProps {
   className?: string
-  children: React.ReactNode
+  children: string
   filled?: boolean
   size?: '20' | '24' | '40' | '48'
 }

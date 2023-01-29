@@ -1,27 +1,40 @@
 'use client'
 
 import React, { Children, ReactNode, cloneElement, useState } from 'react'
+import clsx from 'clsx'
 
-import ButtonBase from '@/components/ButtonBase'
-import Icon from '@/components/Icon'
+import ButtonBase, { ButtonBaseProps } from '@/components/ButtonBase'
+import Icon, { IconProps } from '@/components/Icon'
 
 export interface NavigationBarItemProps {
   children: ReactNode
-  icon?: string
+  icon: IconProps['children']
+  onClick?: ButtonBaseProps['onClick']
   selected?: boolean
 }
 
 export function NavigationBarItem({
   children,
-  icon = 'home',
+  icon,
+  onClick,
   selected,
 }: NavigationBarItemProps) {
   return (
-    <ButtonBase className="flex h-20 min-w-[48px] grow basis-0 flex-col items-center justify-center">
-      <Icon className="flex" filled={selected}>
+    <ButtonBase
+      className={clsx(
+        'flex h-20 min-w-[48px] grow basis-0 flex-col items-center justify-center transition',
+        selected && 'font-bold text-primary',
+      )}
+      onClick={onClick}
+      ripple={false}
+    >
+      <Icon
+        className={clsx('flex transition', selected && 'scale-125')}
+        filled={selected}
+      >
         {icon}
       </Icon>
-      <div className="flex font-mono uppercase">{children}</div>
+      <div className="mt-1 flex font-mono uppercase">{children}</div>
     </ButtonBase>
   )
 }
@@ -39,6 +52,7 @@ export default function NavigationBar(props: {
           item as React.ReactElement,
           {
             selected: index === selected,
+            onClick: () => setSelected(index),
           },
         )
       })}
