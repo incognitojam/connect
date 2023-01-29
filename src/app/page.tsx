@@ -1,18 +1,15 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Tab } from '@headlessui/react'
 
-import AppBar from '@/components/AppBar'
 import Button from '@/components/Button'
 import Switch from '@/components/Switch'
 import Surface from '@/components/Surface'
+import Link from 'next/link'
 
 export default function Home() {
   const [enabled, setEnabled] = useState(false)
-  const [selectedIndex, setSelectedIndex] = useState(0)
 
-  const pages = ['Navigation', 'Timeline', 'Clips']
   const cards = [
     ['bg-primary', 'text-on-primary'],
     ['bg-secondary', 'text-on-secondary'],
@@ -46,9 +43,9 @@ export default function Home() {
 
   return (
     <>
-      <AppBar relative>
-        <h1 className="text-3xl font-bold">comma connect</h1>
-      </AppBar>
+      <Link href={'/abc123'}>
+        <Button>Go to dashboard</Button>
+      </Link>
 
       <div className="elevation-2 mx-auto flex max-w-md items-center space-x-4 rounded-xl bg-white p-6">
         <div className="shrink-0">
@@ -70,23 +67,6 @@ export default function Home() {
           </Switch>
         </div>
       </div>
-
-      <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-        <Tab.List className="space-x-2">
-          {pages.map((page, index) => (
-            <Tab
-              key={index}
-              className={({ selected }) =>
-                `py-2 px-4 text-sm font-medium ${
-                  selected ? 'text-primary-40' : 'text-gray-500'
-                } border border-primary-40 rounded-md`
-              }
-            >
-              {page}
-            </Tab>
-          ))}
-        </Tab.List>
-      </Tab.Group>
 
       {cards}
     </>
