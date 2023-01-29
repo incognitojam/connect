@@ -7,7 +7,6 @@ import clsx from 'clsx'
 
 import Icon, { IconProps } from '@/components/Icon'
 
-
 export interface NavigationBarItemProps {
   children: ReactNode
   icon: IconProps['children']

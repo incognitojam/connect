@@ -11,8 +11,8 @@ export default function DashboardLayout({
   children,
   params: { dongleId },
 }: {
-  children: React.ReactNode,
-  params: { dongleId: string },
+  children: React.ReactNode
+  params: { dongleId: string }
 }) {
   const [contentStyles, contentRef] = useSpring({ x: 0 }, [])
   const [drawerStyles, drawerRef] = useSpring({ x: -16, opacity: 0 }, [])
