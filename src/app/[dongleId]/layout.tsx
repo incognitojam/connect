@@ -54,7 +54,7 @@ export default function DashboardLayout({
 
   return (
     <div className="overflow-x-hidden">
-      <nav className="bg-background">
+      <nav>
         <animated.div
           {...bind()}
           className="absolute inset-y-0 left-0 w-screen touch-pan-y overflow-y-auto bg-surface text-on-surface-variant"
@@ -69,7 +69,7 @@ export default function DashboardLayout({
       </nav>
 
       <animated.main
-        className="relative h-screen flex-1 overflow-y-auto bg-background"
+        className="relative h-screen flex-1 overflow-y-auto"
         style={contentStyles}
       >
         <div className="touch-none h-screen" {...bind()}>
