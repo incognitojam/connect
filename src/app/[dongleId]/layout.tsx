@@ -9,8 +9,10 @@ import useWindowDimensions from '@/hooks/dimensions'
 
 export default function DashboardLayout({
   children,
+  params: { dongleId },
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  params: { dongleId: string },
 }) {
   const [contentStyles, contentRef] = useSpring({ x: 0 }, [])
   const [drawerStyles, drawerRef] = useSpring({ x: -16, opacity: 0 }, [])
@@ -77,9 +79,15 @@ export default function DashboardLayout({
         </div>
 
         <NavigationBar>
-          <NavigationBarItem icon="map">Map</NavigationBarItem>
-          <NavigationBarItem icon="route">Timeline</NavigationBarItem>
-          <NavigationBarItem icon="video_library">Clips</NavigationBarItem>
+          <NavigationBarItem icon="map" href={`/${dongleId}`}>
+            Overview
+          </NavigationBarItem>
+          <NavigationBarItem icon="route" href={`/${dongleId}/timeline`}>
+            Timeline
+          </NavigationBarItem>
+          <NavigationBarItem icon="video_library" href={`/${dongleId}/clips`}>
+            Clips
+          </NavigationBarItem>
         </NavigationBar>
       </animated.main>
     </div>

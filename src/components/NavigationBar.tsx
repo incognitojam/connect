@@ -1,32 +1,33 @@
 'use client'
 
-import React, { Children, ReactNode, cloneElement, useState } from 'react'
+import React, { Children, ReactNode, cloneElement, isValidElement } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
-import ButtonBase, { ButtonBaseProps } from '@/components/ButtonBase'
 import Icon, { IconProps } from '@/components/Icon'
+
 
 export interface NavigationBarItemProps {
   children: ReactNode
   icon: IconProps['children']
-  onClick?: ButtonBaseProps['onClick']
+  href: string
   selected?: boolean
 }
 
 export function NavigationBarItem({
   children,
   icon,
-  onClick,
+  href,
   selected,
 }: NavigationBarItemProps) {
   return (
-    <ButtonBase
+    <Link
       className={clsx(
         'flex h-20 min-w-[48px] grow basis-0 flex-col items-center justify-center transition',
         selected && 'font-bold text-primary',
       )}
-      onClick={onClick}
-      ripple={false}
+      href={href}
     >
       <Icon
         className={clsx(
@@ -38,26 +39,27 @@ export function NavigationBarItem({
         {icon}
       </Icon>
       <div className="mt-1 flex font-mono uppercase">{children}</div>
-    </ButtonBase>
+    </Link>
   )
 }
 
-export default function NavigationBar(props: {
+export interface NavigationBarProps {
   children: ReactNode | ReactNode[]
-}) {
-  const [selected, setSelected] = useState(0)
-  const items = Children.toArray(props.children)
+}
+
+export default function NavigationBar({ children }: NavigationBarProps) {
+  const pathname = usePathname()
 
   return (
     <div className="pb-safe elevation-2 absolute inset-x-0 bottom-0 flex h-20 flex-row gap-x-2 bg-surface text-on-surface">
-      {items.map((item, index) => {
-        return cloneElement<NavigationBarItemProps>(
-          item as React.ReactElement,
-          {
-            selected: index === selected,
-            onClick: () => setSelected(index),
-          },
-        )
+      {Children.map(children, (child) => {
+        if (!isValidElement<NavigationBarItemProps>(child)) {
+          return null
+        }
+
+        return cloneElement(child, {
+          selected: child.props.href === pathname,
+        })
       })}
     </div>
   )

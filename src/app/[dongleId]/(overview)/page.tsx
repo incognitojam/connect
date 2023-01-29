@@ -4,10 +4,15 @@ import Button from '@/components/Button'
 import Icon from '@/components/Icon'
 import Surface from '@/components/Surface'
 
-export default function Dashboard() {
+export default function Dashboard({
+  params: { dongleId },
+}: {
+  params: { dongleId: string }
+}) {
   return (
     <div className="p-4">
       <h1 className="text-6xl">Dashboard</h1>
+      <h2 className="text-sm">{dongleId}</h2>
 
       <p className="text-2xl">Inter</p>
       <p className="font-mono text-2xl">JetBrains Mono</p>
