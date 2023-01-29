@@ -72,7 +72,7 @@ export default function DashboardLayout({
         className="relative h-screen flex-1 overflow-y-auto bg-background"
         style={contentStyles}
       >
-        <div className="touch-none h-screen" {...bind()}>
+        <div className="h-screen touch-none" {...bind()}>
           {children}
         </div>
 
