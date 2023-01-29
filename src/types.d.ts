@@ -1,4 +1,4 @@
-interface Device {
+export interface Device {
   dongle_id: string
   alias: string
   serial: string
@@ -15,18 +15,53 @@ interface Device {
   sim_id: string
 }
 
-interface DrivingStatisticsAggregation {
+export interface DrivingStatisticsAggregation {
   distance: number
   minutes: number
   routes: number
 }
 
-interface DrivingStatistics {
+export interface DrivingStatistics {
   all: DrivingStatisticsAggregation
   week: DrivingStatisticsAggregation
 }
 
-interface DeviceUser {
+export interface DeviceUser {
   email: string
   permission: 'read_access' | 'owner'
+}
+
+export interface Clip {
+  id: number
+  create_time: number
+  dongle_id: string
+  route_name: string
+  start_time: number
+  end_time: number
+  title: string
+  video_type: 'q' | 'f' | 'e' | 'd' | '360'
+  is_public: boolean
+  status?: 'pending' | 'done' | 'failed'
+}
+
+export interface PendingClip extends Clip {
+  status: 'pending'
+  pending_status: 'waiting_jobs' | 'processing'
+  pending_progress: number
+}
+
+export interface DoneClip extends Clip {
+  status: 'done'
+  url: string
+  thumbnail: string
+}
+
+export interface FailedClip extends Clip {
+  status: 'failed'
+  error_status:
+    | 'upload_failed_request'
+    | 'upload_failed'
+    | 'upload_failed_dcam'
+    | 'upload_failed_timeout'
+    | 'export_failed'
 }
