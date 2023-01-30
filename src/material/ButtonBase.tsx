@@ -48,8 +48,9 @@ export default function ButtonBase({
   }
 
   const removeRipple = (id: number) => {
-    const ripplesNew = ripples.filter((item) => item.id !== id)
-    setRipples(ripplesNew)
+    setRipples((previous) => {
+      return previous.filter((item) => item.id !== id)
+    })
   }
 
   return (

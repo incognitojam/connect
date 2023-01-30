@@ -27,9 +27,7 @@ export default function Ripple({
   terminate,
 }: RippleProps) {
   useEffect(() => {
-    const timer = setTimeout(() => {
-      terminate(id)
-    }, 580)
+    const timer = setTimeout(() => terminate(id), 550)
     return () => clearTimeout(timer)
   }, [])
 
