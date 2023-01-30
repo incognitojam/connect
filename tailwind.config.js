@@ -27,6 +27,9 @@ module.exports = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
       },
+      animation: {
+        ripple: 'ripple 600ms linear'
+      },
       keyframes: {
         ripple: {
           '100%': {

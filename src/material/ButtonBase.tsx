@@ -1,7 +1,8 @@
 'use client'
 
-import React, { MouseEvent, ReactNode, useMemo } from 'react'
+import React, { MouseEvent, ReactNode, useRef, useState } from 'react'
 import clsx from 'clsx'
+import Ripple, { RippleEffect, RippleStyle } from './Ripple'
 
 export interface ButtonBaseProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -11,41 +12,6 @@ export interface ButtonBaseProps
   ripple?: boolean
 }
 
-const handleClick = (onClick: ButtonBaseProps['onClick']) => {
-  return (e: MouseEvent<HTMLButtonElement>) => {
-    const button = e.currentTarget
-    const rect = button.getBoundingClientRect()
-
-    const circle = document.createElement('span')
-    const diameter = Math.max(button.clientWidth, button.clientHeight)
-    const radius = diameter / 2
-
-    circle.style.width = circle.style.height = `${diameter}px`
-    circle.style.left = `${e.clientX - rect.left - radius}px`
-    circle.style.top = `${e.clientY - rect.top - radius}px`
-    circle.classList.add(
-      'absolute',
-      'animate-[ripple_600ms_linear]',
-      'rounded-full',
-      'scale-50',
-      'bg-[rgba(255,255,255,0.35)]',
-    )
-
-    const ripple = button.getElementsByClassName('animate-ripple')[0]
-    if (ripple) {
-      ripple.remove()
-    }
-
-    button.appendChild(circle)
-
-    setTimeout(() => {
-      circle.remove()
-    }, 550)
-
-    onClick && onClick(e)
-  }
-}
-
 export default function ButtonBase({
   className,
   children,
@@ -53,17 +19,53 @@ export default function ButtonBase({
   ripple = true,
   ...rest
 }: ButtonBaseProps) {
-  const onClickHandler = useMemo(
-    () => (ripple ? handleClick(onClick) : onClick),
-    [ripple, onClick],
-  )
+
+  const button = useRef<HTMLButtonElement | null>(null);
+  const [ripples, setRipples] = useState<RippleEffect[]>([]);
+  const [nextRippleId, setNextRippleId] = useState<number>(0);
+
+  const onClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
+    if(ripple && button.current) {
+      const rect = button.current.getBoundingClientRect()
+      const width = button.current.clientWidth || 0
+      const height = button.current.clientHeight || 0
+      const diameter = Math.max(width, height);
+      const radius = diameter / 2;
+      const rippleStyle: RippleStyle = { height: diameter, width: diameter, top: e.clientY - rect.top - radius, left: e.clientX - rect.left - radius }
+      setRipples((curr) => [...curr, { id: nextRippleId, timestamp: e.timeStamp, style: rippleStyle }])
+      setNextRippleId((curr) => curr + 1);
+      onClick && onClick(e)
+    } else {
+      onClick && onClick(e)
+    }
+  }
+  
+  const removeRipple = (id: number) => {
+    const ripplesNew = ripples.filter((item) => item.id !== id)
+    setRipples(ripplesNew);
+  }
+
   return (
     <button
       className={clsx(`relative overflow-hidden`, className)}
       onClick={onClickHandler}
+      ref={button}
       {...rest}
     >
       {children}
+      {ripples.map((ripple) => {
+        return (
+          <Ripple
+            key={`${ripple.timestamp}-${ripple.id}`}
+            id={ripple.id}
+            className="absolute animate-ripple rounded-full scale-50 bg-[rgba(255,255,255,0.35)]"
+            style={ripple.style}
+            terminate={removeRipple}
+          />
+        )
+      })}
+      
     </button>
   )
 }
+

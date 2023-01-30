@@ -43,7 +43,7 @@ export default function Button({
   return (
     <ButtonBase
       className={clsx(
-        `h-[40px] rounded-full py-1 font-mono text-[16px] uppercase contrast-100 transition hover:shadow-lg hover:contrast-115`,
+        `h-[40px] rounded-full py-1 font-mono text-[16px] uppercase contrast-100 transition hover:shadow-lg hover:contrast-115 inline-flex justify-center items-center gap-2`,
         bg,
         hoverBg,
         padding,
@@ -53,9 +53,9 @@ export default function Button({
       onClick={onClick}
       {...rest}
     >
-      {startIcon && <span className="mr-2">{startIcon}</span>}
-      <span className="align-[1px]">{children}</span>
-      {endIcon && <span className="ml-2">{endIcon}</span>}
+      {startIcon && <span>{startIcon}</span>}
+      <span>{children}</span>
+      {endIcon && <span>{endIcon}</span>}
     </ButtonBase>
   )
 }
