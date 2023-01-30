@@ -1,11 +1,12 @@
 'use client'
 
 import React, { useState } from 'react'
+import Link from 'next/link'
 
 import Button from '@/material/Button'
-import Switch from '@/material/Switch'
+import Icon from '@/material/Icon'
 import Surface from '@/material/Surface'
-import Link from 'next/link'
+import Switch from '@/material/Switch'
 
 export default function Home() {
   const [enabled, setEnabled] = useState(false)
@@ -43,20 +44,25 @@ export default function Home() {
 
   return (
     <>
-      <Link href={'/abc123'}>
-        <Button>Go to dashboard</Button>
-      </Link>
+      <div className="m-4">
+        <Link href={'/abc123'}>
+          <Button>Go to dashboard</Button>
+        </Link>
+      </div>
 
-      <div className="elevation-2 mx-auto flex max-w-md items-center space-x-4 rounded-xl bg-white p-6">
-        <div className="shrink-0">
-          <img className="h-12 w-12" src="/vercel.svg" alt="ChitChat Logo" />
+      <Surface className="elevation-3 max-w-md rounded-lg p-4" variant>
+        <p className="text-4xl">Surface</p>
+
+        <div className="text-secondary">
+          <Icon filled size="40">
+            home
+          </Icon>
+          <Icon size="40">map</Icon>
+          <Icon size="40">directions_car</Icon>
+          <Icon size="40">video_library</Icon>
         </div>
+
         <div>
-          <div className="text-xl font-medium text-black">ChitChat</div>
-          <p className="text-slate-500">You have a new message!</p>
-          <Button>Click me</Button>
-          <Button color="secondary">Click me</Button>
-          <Button color="tertiary">Click me</Button>
           <Switch color="tertiary" checked={enabled} onChange={setEnabled}>
             <span className="sr-only">Enable notifications</span>
             <span
@@ -66,7 +72,15 @@ export default function Home() {
             />
           </Switch>
         </div>
-      </div>
+
+        <Button
+          color="primary"
+          startIcon={<Icon filled>home</Icon>}
+          endIcon={<Icon>arrow_forward</Icon>}
+        >
+          Button
+        </Button>
+      </Surface>
 
       {cards}
     </>
