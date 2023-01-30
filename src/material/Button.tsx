@@ -53,9 +53,9 @@ export default function Button({
       onClick={onClick}
       {...rest}
     >
-      {startIcon && startIcon}
+      {startIcon}
       {children}
-      {endIcon && endIcon}
+      {endIcon}
     </ButtonBase>
   )
 }
