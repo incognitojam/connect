@@ -16,11 +16,11 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter&family=JetBrains+Mono&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block"
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0"
+          href="https://fonts.googleapis.com/css2?family=Inter&family=JetBrains+Mono&display=swap"
         />
       </head>
       <body className="bg-background text-on-background">{children}</body>
