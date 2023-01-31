@@ -66,7 +66,7 @@ export default function ButtonBase({
           <Ripple
             key={`${ripple.timestamp}-${ripple.id}`}
             id={ripple.id}
-            className="absolute scale-50 animate-ripple rounded-full bg-[rgba(255,255,255,0.35)]"
+            className="absolute scale-50 animate-ripple rounded-full bg-on-surface opacity-30"
             style={ripple.style}
             terminate={removeRipple}
           />
