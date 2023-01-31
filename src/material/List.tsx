@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import clsx from 'clsx'
 
+import ButtonBase from '@/material/ButtonBase'
 import Typography from '@/material/Typography'
 
 export interface ListProps {
@@ -19,6 +20,7 @@ export interface ListItemProps {
   variant?: '1-line' | '2-line' | '3-line'
   leading?: ReactNode
   trailing?: ReactNode
+  onClick?: () => void
 }
 
 // TODO: guess variant from content
@@ -27,6 +29,7 @@ export function ListItem({
   variant = '1-line',
   leading,
   trailing,
+  onClick,
 }: ListItemProps) {
   const height = {
     '1-line': 'h-14',
@@ -34,16 +37,17 @@ export function ListItem({
     '3-line': 'h-28',
   }[variant]
   return (
-    <div
+    <ButtonBase
       className={clsx(
-        'elevation-0 ml-4 mr-6 flex items-center gap-4 rounded-none bg-surface text-on-surface',
+        'elevation-0 ml-4 mr-6 flex items-center gap-4 rounded-none bg-surface text-on-surface transition-colors',
         height,
       )}
+      onClick={onClick}
     >
       {leading}
       {children}
       {trailing}
-    </div>
+    </ButtonBase>
   )
 }
 
