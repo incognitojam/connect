@@ -63,14 +63,7 @@ export default function Home() {
         </div>
 
         <div>
-          <Switch color="tertiary" checked={enabled} onChange={setEnabled}>
-            <span className="sr-only">Enable notifications</span>
-            <span
-              className={`${
-                enabled ? 'translate-x-6' : 'translate-x-1'
-              } inline-block h-4 w-4 rounded-full bg-white transition`}
-            />
-          </Switch>
+          <Switch color="tertiary" checked={enabled} onChange={setEnabled} />
         </div>
 
         <Button

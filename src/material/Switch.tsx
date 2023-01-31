@@ -7,7 +7,6 @@ export interface SwitchProps {
   color?: 'primary' | 'secondary' | 'tertiary'
   checked?: boolean
   onChange?: (checked: boolean) => void
-  children?: ReactNode | ReactNode[]
 }
 
 export default function Switch({
@@ -15,7 +14,6 @@ export default function Switch({
   color = 'primary',
   checked,
   onChange,
-  children,
 }: SwitchProps) {
   const bg = checked
     ? {
@@ -23,18 +21,34 @@ export default function Switch({
         secondary: 'bg-secondary',
         tertiary: 'bg-tertiary',
       }[color]
-    : 'bg-gray-200'
+    : 'bg-surface-variant'
+  const handle = checked
+    ? {
+        primary: 'bg-on-primary',
+        secondary: 'bg-on-secondary',
+        tertiary: 'bg-on-tertiary',
+      }[color]
+    : 'bg-outline'
+  const outline = checked ? 'outline-transparent' : 'outline-outline'
 
   return (
     <HeadlessSwitch
       className={clsx(
-        `${bg} relative inline-flex h-6 w-11 items-center rounded-full transition`,
+        bg,
+        outline,
+        `relative inline-flex h-8 w-[56px] items-center rounded-full pl-1 outline outline-2 outline-offset-[-2px] transition`,
         className,
       )}
       checked={checked}
       onChange={onChange}
     >
-      {children}
+      <span
+        className={clsx(
+          'inline-block h-4 w-4 rounded-full transition',
+          checked ? 'translate-x-7 scale-150' : 'translate-x-1 scale-100',
+          handle,
+        )}
+      />
     </HeadlessSwitch>
   )
 }
