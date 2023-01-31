@@ -24,15 +24,12 @@ export function NavigationBarItem({
     <Link
       className={clsx(
         'flex h-20 min-w-[48px] grow basis-0 flex-col items-center justify-center transition',
-        selected && 'font-bold text-primary',
+        selected && 'font-medium text-primary',
       )}
       href={href}
     >
       <Icon
-        className={clsx(
-          'flex transition-all',
-          selected ? 'scale-125' : 'scale-100',
-        )}
+        className="flex transition-all"
         filled={selected}
       >
         {icon}
