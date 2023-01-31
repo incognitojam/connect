@@ -19,6 +19,19 @@ const getSchemeColours = (scheme) => ({
 module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
+    borderRadius: {
+      none: '0',
+      xs: '0.25em',
+      sm: '0.5em',
+      md: '0.75em',
+      lg: '1em',
+      xl: '1.75em',
+      full: '9999px',
+    },
+    fontWeight: {
+      regular: 400,
+      medium: 500,
+    },
     extend: {
       contrast: {
         115: '1.15',
@@ -28,7 +41,7 @@ module.exports = {
         mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
       },
       animation: {
-        ripple: 'ripple 600ms linear'
+        ripple: 'ripple 600ms linear',
       },
       keyframes: {
         ripple: {
