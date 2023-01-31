@@ -6,6 +6,8 @@ export interface SearchProps {
   children?: ReactNode
   leading?: ReactNode
   trailing?: ReactNode
+  expanded?: boolean
+  result?: ReactNode
 }
 
 export default function Search({
@@ -13,17 +15,23 @@ export default function Search({
   children,
   leading,
   trailing,
+  expanded,
+  result,
 }: SearchProps) {
   return (
     <div
       className={clsx(
-        'elevation-3 flex h-14 min-w-[320px] max-w-[720px] items-center justify-between gap-4 rounded-full bg-surface px-4 text-on-surface',
+        'elevation-3 min-w-[320px] max-w-[720px] rounded-xl bg-surface text-on-surface transition',
         className,
       )}
     >
-      {leading}
-      <span className="w-full">{children}</span>
-      {trailing}
+      <div className="flex h-14 items-center justify-between gap-4 px-4">
+        {leading}
+        <span className="w-full">{children}</span>
+        {trailing}
+      </div>
+
+      {expanded && result}
     </div>
   )
 }
