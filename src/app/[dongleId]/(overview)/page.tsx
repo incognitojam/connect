@@ -3,17 +3,31 @@
 import React, { useState } from 'react'
 
 import IconButton from '@/material/IconButton'
+import List, { ListItem, ListItemContent } from '@/material/List'
 import Search from '@/material/Search'
 import Switch from '@/material/Switch'
+import Icon from "@/material/Icon";
 
 export default function Dashboard({
   params: { dongleId },
 }: {
   params: { dongleId: string }
 }) {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(true)
 
-  const result = <div>Hello!</div>
+  const result = (
+    <List className="pb-2">
+      <ListItem leading={<Icon filled>star</Icon>}>
+        <ListItemContent headline="Result 1" subhead="This is a subhead" />
+      </ListItem>
+      <ListItem leading={<Icon filled>store</Icon>}>
+        <ListItemContent headline="Result 2" subhead="This is a subhead" />
+      </ListItem>
+      <ListItem leading={<Icon filled>local_bar</Icon>}>
+        <ListItemContent headline="Result 3" subhead="This is a subhead" />
+      </ListItem>
+    </List>
+  )
 
   return (
     <div className="p-4">
