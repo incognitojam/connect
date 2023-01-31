@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react'
+import React, { ElementType, ReactNode } from 'react'
 import clsx from 'clsx'
 
 export interface TypographyProps {
   className?: string
   children?: ReactNode
-  typeScale?:
+  variant?:
     | 'title-lg'
     | 'title-md'
     | 'title-sm'
@@ -14,12 +14,21 @@ export interface TypographyProps {
     | 'body-lg'
     | 'body-md'
     | 'body-sm'
+  color?:
+    | 'on-surface'
+    | 'on-surface-variant'
+    | 'on-primary'
+    | 'on-secondary'
+    | 'on-tertiary'
+  as?: ElementType
 }
 
 export default function Typography({
   className,
   children,
-  typeScale = 'body-md',
+  color = 'on-surface',
+  variant = 'body-md',
+  as: Component = 'span',
 }: TypographyProps) {
   // TODO: letter spacing
   const styles = {
@@ -32,6 +41,19 @@ export default function Typography({
     'body-lg': 'font-sans text-[16px] leading-[24px] font-regular',
     'body-md': 'font-sans text-[14px] leading-[20px] font-regular',
     'body-sm': 'font-sans text-[12px] leading-[16px] font-regular',
-  }[typeScale]
-  return <span className={clsx(styles, className)}>{children}</span>
+  }[variant]
+
+  const colorStyles = {
+    'on-surface': 'text-on-surface',
+    'on-surface-variant': 'text-on-surface-variant',
+    'on-primary': 'text-on-primary',
+    'on-secondary': 'text-on-secondary',
+    'on-tertiary': 'text-on-tertiary',
+  }[color]
+
+  return (
+    <Component className={clsx(styles, colorStyles, className)}>
+      {children}
+    </Component>
+  )
 }
