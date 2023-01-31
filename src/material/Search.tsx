@@ -21,7 +21,7 @@ export default function Search({
   return (
     <div
       className={clsx(
-        'elevation-3 min-w-[320px] max-w-[720px] rounded-xl bg-surface text-on-surface transition',
+        'elevation-3 min-w-[320px] max-w-[720px] rounded-xl bg-surface text-on-surface transition-colors',
         className,
       )}
     >

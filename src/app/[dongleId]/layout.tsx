@@ -75,7 +75,7 @@ export default function DashboardLayout({
       </nav>
 
       <animated.main
-        className="h-full flex-1 overflow-y-auto bg-background"
+        className="h-full flex-1 overflow-y-auto bg-background transition-colors"
         style={contentStyles}
       >
         <div className="relative h-full touch-none" {...bind()}>

@@ -51,6 +51,9 @@ module.exports = {
           },
         },
       },
+      transitionProperty: {
+        surface: 'background-color, border-color, color, box-shadow',
+      },
     },
   },
   plugins: [

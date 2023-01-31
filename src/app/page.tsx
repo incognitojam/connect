@@ -33,7 +33,7 @@ export default function Home() {
     ['bg-on-error-container', 'text-error-container'],
   ].map(([bg, text]) => (
     <Surface
-      className={`elevation-3 hover:elevation-5 mt-4 max-w-md rounded-lg p-4 transition ${bg} ${text}`}
+      className={`elevation-3 hover:elevation-5 mt-4 max-w-md rounded-lg p-4 transition-surface ${bg} ${text}`}
       key={bg}
     >
       {bg}
