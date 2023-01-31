@@ -1,7 +1,9 @@
 import React, { ReactNode } from 'react'
+import clsx from 'clsx'
 import { Switch as HeadlessSwitch } from '@headlessui/react'
 
 export interface SwitchProps {
+  className?: string
   color?: 'primary' | 'secondary' | 'tertiary'
   checked?: boolean
   onChange?: (checked: boolean) => void
@@ -9,6 +11,7 @@ export interface SwitchProps {
 }
 
 export default function Switch({
+  className,
   color = 'primary',
   checked,
   onChange,
@@ -24,9 +27,12 @@ export default function Switch({
 
   return (
     <HeadlessSwitch
+      className={clsx(
+        `${bg} relative inline-flex h-6 w-11 items-center rounded-full transition`,
+        className,
+      )}
       checked={checked}
       onChange={onChange}
-      className={`${bg} relative inline-flex h-6 w-11 items-center rounded-full transition`}
     >
       {children}
     </HeadlessSwitch>
