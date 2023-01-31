@@ -11,15 +11,13 @@ export interface ButtonProps extends ButtonBaseProps {
 
 export default function Button({
   className,
-  color,
+  color = 'primary',
   children,
   onClick,
   startIcon,
   endIcon,
   ...rest
 }: ButtonProps) {
-  color = color || 'primary'
-
   const bg = {
     primary: 'bg-primary',
     secondary: 'bg-secondary',

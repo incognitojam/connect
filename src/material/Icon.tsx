@@ -10,9 +10,14 @@ export interface IconProps {
   size?: '20' | '24' | '40' | '48'
 }
 
-export default function Icon({ className, children, filled, size }: IconProps) {
+export default function Icon({
+  className,
+  children,
+  filled,
+  size = '24',
+}: IconProps) {
   // defined in globals.css
-  const sizeStyle = `size-${size || '24'}`
+  const sizeStyle = `size-${size}`
   const filledStyle = filled ? 'icon-filled' : 'icon-outline'
   return (
     <span

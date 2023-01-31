@@ -9,13 +9,11 @@ export interface SwitchProps {
 }
 
 export default function Switch({
-  color,
+  color = 'primary',
   checked,
   onChange,
   children,
 }: SwitchProps) {
-  color = color || 'primary'
-
   const bg = checked
     ? {
         primary: 'bg-primary',
