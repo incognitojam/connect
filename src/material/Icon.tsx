@@ -17,7 +17,7 @@ export default function Icon({ className, children, filled, size }: IconProps) {
   return (
     <span
       className={clsx(
-        'material-symbols-outlined',
+        'material-symbols-outlined flex',
         filledStyle,
         sizeStyle,
         className,
