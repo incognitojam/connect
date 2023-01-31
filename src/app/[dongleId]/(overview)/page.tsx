@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react'
 
+import Icon from '@/material/Icon'
 import IconButton from '@/material/IconButton'
 import List, { ListItem, ListItemContent } from '@/material/List'
 import Search from '@/material/Search'
 import Switch from '@/material/Switch'
-import Icon from "@/material/Icon";
 
 export default function Dashboard({
   params: { dongleId },

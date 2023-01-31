@@ -5,6 +5,7 @@ import { animated, useSpring } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
 
 import NavigationBar, { NavigationBarItem } from '@/material/NavigationBar'
+import Typography from '@/material/Typography'
 import useWindowDimensions from '@/hooks/dimensions'
 
 export default function DashboardLayout({
@@ -63,7 +64,9 @@ export default function DashboardLayout({
           className="absolute inset-y-0 left-0 w-screen touch-pan-y overflow-y-auto overscroll-y-contain bg-surface px-1 text-on-surface-variant"
           style={drawerStyles}
         >
-          <h1 className="text-[24px] font-bold">comma connect</h1>
+          <Typography className="my-2" as="h1" variant="headline-md">
+            comma connect
+          </Typography>
 
           {[...Array(50)].map((_, i) => (
             <p key={i}>Item {i}</p>
