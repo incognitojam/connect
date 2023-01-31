@@ -22,7 +22,7 @@ export default function Icon({
   return (
     <span
       className={clsx(
-        'material-symbols-outlined flex',
+        'material-symbols-outlined z-10 flex',
         filledStyle,
         sizeStyle,
         className,

@@ -42,7 +42,7 @@ export default function Dashboard({
 
       <Search
         className="my-2 max-w-[360px]"
-        leading={<IconButton>search</IconButton>}
+        leading={<IconButton size="24">search</IconButton>}
         expanded={expanded}
         result={result}
       >
