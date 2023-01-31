@@ -8,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html data-theme="light" lang="en">
+    <html data-theme="dark" lang="en">
       <head>
         <title key="title">connect</title>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
