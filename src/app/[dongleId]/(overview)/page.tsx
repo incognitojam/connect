@@ -15,6 +15,16 @@ export default function Dashboard({
 }) {
   const [expanded, setExpanded] = useState(true)
 
+  const getTheme = () =>
+    document.documentElement.getAttribute('data-theme') as 'light' | 'dark'
+  const [theme, setTheme] = useState(getTheme())
+
+  const changeTheme = (dark: boolean) => {
+    const value = dark ? 'dark' : 'light'
+    document.documentElement.setAttribute('data-theme', value)
+    setTheme(value)
+  }
+
   const result = (
     <List className="pb-2">
       <ListItem leading={<Icon filled>star</Icon>}>
@@ -32,6 +42,13 @@ export default function Dashboard({
   return (
     <div className="p-4">
       <h2 className="text-sm">{dongleId}</h2>
+
+      <Switch
+        color="secondary"
+        checked={theme === 'dark'}
+        onChange={changeTheme}
+        className="my-2 mr-4"
+      />
 
       <Switch
         color="primary"
