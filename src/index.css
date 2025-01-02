@@ -22,7 +22,7 @@
     --color-on-error: rgb(255 255 255);
     --color-error-container: rgb(255 218 214);
     --color-on-error-container: rgb(65 0 2);
-    --color-background: rgb(251 248 255);
+    --color-background: red;
     --color-on-background: rgb(27 27 33);
     --color-surface: rgb(251 248 255);
     --color-on-surface: rgb(27 27 33);
@@ -75,7 +75,7 @@
     --color-on-error: rgb(105 0 5);
     --color-error-container: rgb(147 0 10);
     --color-on-error-container: rgb(255 218 214);
-    --color-background: rgb(19 19 24);
+    --color-background: red;
     --color-on-background: rgb(228 225 233);
     --color-surface: rgb(19 19 24);
     --color-on-surface: rgb(228 225 233);
