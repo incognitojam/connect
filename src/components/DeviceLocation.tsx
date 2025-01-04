@@ -46,7 +46,7 @@ const DeviceLocation: VoidComponent<DeviceLocationProps> = (props) => {
     }).catch(() => setUserPosition(null))
 
     const tileLayer = L.tileLayer(
-      `https://api.mapbox.com/styles/v1/${MAPBOX_USERNAME}/${getMapStyleId(getThemeId())}/tiles/256/{z}/{x}/{y}@2x?access_token=${MAPBOX_TOKEN}`,
+      `https://api.mapbox.com/styles/v1/${MAPBOX_USERNAME}/${getMapStyleId(getThemeId())}/tiles/256/{z}/{x}/{y}?access_token=${MAPBOX_TOKEN}`,
     )
 
     const m = L.map(
