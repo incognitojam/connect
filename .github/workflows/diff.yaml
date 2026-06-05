@@ -3,7 +3,7 @@ name: PR Diff
 on:
   pull_request_target:
     types: [assigned, opened, synchronize, reopened, edited]
-    branches: [master]
+    branches: [main]
 
 concurrency:
   group: ${{ github.head_ref || github.ref }}-${{ github.workflow }}
@@ -24,13 +24,13 @@ jobs:
       - name: Check whether branch is up-to-date
         id: status
         run: |
-          git remote add commaai https://github.com/commaai/new-connect.git
-          git fetch commaai master
+          git remote add incognitojam https://github.com/incognitojam/connect.git
+          git fetch incognitojam main
           echo "${{ github.event.pull_request.head.sha }}"
-          git rev-list --left-right --count commaai/master...${{ github.event.pull_request.head.sha }} | awk '{print "Behind "$1" - Ahead "$2""}'
-          count=$(git rev-list --left-right --count commaai/master...${{ github.event.pull_request.head.sha }} | awk '{print $1}')
+          git rev-list --left-right --count incognitojam/main...${{ github.event.pull_request.head.sha }} | awk '{print "Behind "$1" - Ahead "$2""}'
+          count=$(git rev-list --left-right --count incognitojam/main...${{ github.event.pull_request.head.sha }} | awk '{print $1}')
           if [ $count -gt 0 ]; then
-            echo "Current branch is behind commaai master branch!"
+            echo "Current branch is behind incognitojam main branch!"
             echo "outdated=true" >> "$GITHUB_OUTPUT"
           else
             echo "outdated=false" >> "$GITHUB_OUTPUT"
@@ -52,7 +52,7 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.sha }}
           path: pr
-      - name: Checkout code from commaai master
+      - name: Checkout code from incognitojam main
         uses: actions/checkout@v4
         with:
           path: base
@@ -78,6 +78,6 @@ jobs:
       - name: Comment rebase
         uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b
         with:
-          message: This branch is behind commaai/master. The line count diff bot is disabled.
+          message: This branch is behind incognitojam/main. The line count diff bot is disabled.
           comment-tag: diff
           github-token: ${{ secrets.GITHUB_TOKEN }}
