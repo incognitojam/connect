@@ -1,35 +1,80 @@
-import { describe, expect, test } from 'vitest'
+import { afterEach, describe, expect, test, vi } from 'vitest'
 
 import { getFullAddress, getPlaceName, reverseGeocode } from './geocode'
 
+// reverseGeocode() casts the parsed JSON to the Mapbox response type, so these
+// fixtures only need to carry the fields our code actually reads.
+function stubGeocodeResponse(properties: Record<string, unknown> | null): void {
+  const features = properties ? [{ type: 'Feature', properties }] : []
+  vi.stubGlobal(
+    'fetch',
+    vi.fn(async () => ({ ok: true, json: async () => ({ type: 'FeatureCollection', features }) })),
+  )
+}
+
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
+
 describe('reverseGeocode', () => {
-  test('return null if coords are [0, 0]', async () => {
+  test('returns null at null island without hitting the API', async () => {
+    const fetchSpy = vi.fn()
+    vi.stubGlobal('fetch', fetchSpy)
     expect(await reverseGeocode([0, 0])).toBeNull()
+    expect(fetchSpy).not.toHaveBeenCalled()
+  })
+
+  test('returns the feature from the response', async () => {
+    stubGeocodeResponse({ full_address: '1 Test Road' })
+    const feature = await reverseGeocode([-0.10664, 51.514209])
+    expect(feature?.properties.full_address).toBe('1 Test Road')
+  })
+
+  test('returns null when the response has no features', async () => {
+    stubGeocodeResponse(null)
+    expect(await reverseGeocode([-0.10664, 51.514209])).toBeNull()
   })
 })
 
 describe('getFullAddress', () => {
-  test('return null if coords are [0, 0]', async () => {
+  test('returns null at null island', async () => {
     expect(await getFullAddress([0, 0])).toBeNull()
   })
 
-  test('normal usage', async () => {
-    // expect(await getFullAddress([-77.036574, 38.8976765])).toBe('1600 Pennsylvania Avenue Northwest, Washington, District of Columbia 20500, United States')
+  test('returns the feature full_address', async () => {
+    stubGeocodeResponse({ full_address: '133 Fleet Street, City of London, London, EC4A 2BB, United Kingdom' })
     expect(await getFullAddress([-0.10664, 51.514209])).toBe('133 Fleet Street, City of London, London, EC4A 2BB, United Kingdom')
-    expect(await getFullAddress([-2.076843, 51.894799])).toBe('4 Montpellier Drive, Cheltenham, GL50 1TX, United Kingdom')
   })
 })
 
 describe('getPlaceName', () => {
-  test('return null if coords are [0, 0]', async () => {
+  test('returns null at null island', async () => {
     expect(await getPlaceName([0, 0])).toBeNull()
   })
 
-  test('normal usage', async () => {
+  test('prefers the most specific context entry', async () => {
+    stubGeocodeResponse({
+      context: {
+        neighborhood: { name: 'Little Italy' },
+        place: { name: 'San Diego' },
+        country: { name: 'United States' },
+      },
+    })
     expect(await getPlaceName([-117.168638, 32.723695])).toBe('Little Italy')
-    expect(await getPlaceName([-118.192757, 33.763015])).toBe('Downtown Long Beach')
-    expect(await getPlaceName([-0.113643, 51.504546])).toBe('Waterloo')
-    expect(await getPlaceName([5.572254, 50.64428])).toBe('Liège')
-    expect(await getPlaceName([-2.236802, 53.480931])).toBe('Northern Quarter')
+  })
+
+  test('falls back to a less specific entry when more specific ones are absent', async () => {
+    stubGeocodeResponse({
+      context: {
+        region: { name: 'England' },
+        country: { name: 'United Kingdom' },
+      },
+    })
+    expect(await getPlaceName([-0.113643, 51.504546])).toBe('England')
+  })
+
+  test('returns an empty string when no named context is present', async () => {
+    stubGeocodeResponse({ context: {} })
+    expect(await getPlaceName([-0.10664, 51.514209])).toBe('')
   })
 })
